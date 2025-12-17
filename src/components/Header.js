@@ -58,6 +58,7 @@ import {
   Wallet,
 } from 'flowbite-react-icons/outline';
 import { twMerge } from 'tailwind-merge';
+import { FaCog, FaFilter } from 'react-icons/fa';
 
 import { Icon } from '@iconify-icon/react';
 
@@ -155,24 +156,41 @@ const Header = () => {
             </Link>
           </NavbarBrand>
 
-          <form className="hidden lg:block">
-            <label htmlFor="default-search" className="sr-only">
-              Search
-            </label>
+          <div className="relative hidden lg:block">
             <TextInput
               icon={() => (
                 <Search className="h-5 w-5 text-gray-500 dark:text-gray-400" />
               )}
               id="default-search"
               name="default-search"
-              placeholder="Search in all categories"
+              placeholder="Search..."
               required
-              rightIcon={() => <Button type="submit">Search</Button>}
               size={72}
               type="search"
               className="[&_input]:py-4"
             />
-          </form>
+
+            {/* Dropdown positioned absolutely */}
+            <div className="absolute right-3 top-1/2 -translate-y-1/2">
+              <Dropdown
+                color="blue"
+                label={<FaFilter className="h-3 w-3 text-gray-50" />}
+                placement="bottom"
+                theme={{
+                  arrowIcon: 'hidden',
+                  content: twMerge(theme.dropdown.content, 'w-48 p-3'),
+                  floating: {
+                    target: twMerge(theme.dropdown.floating.target, 'flex-1'),
+                  },
+                }}
+              >
+                <DropdownItem>Option 1</DropdownItem>
+                <DropdownItem>Option 2</DropdownItem>
+                <DropdownItem>Option 3</DropdownItem>
+              </Dropdown>
+            </div>
+          </div>
+
         </div>
         <div className="flex">
           <div className="flex items-center">
@@ -685,7 +703,7 @@ const Header = () => {
             className="md:hidden"
           />
         </div>
-        <form className="mt-3 lg:hidden">
+        <div className="mt-3 lg:hidden relative">
           <label htmlFor="default-search" className="sr-only">
             Search
           </label>
@@ -693,14 +711,35 @@ const Header = () => {
             icon={() => <Search className="h-5 w-5 dark:text-gray-400" />}
             id="default-search"
             name="default-search"
-            placeholder="Search in all categories"
+            placeholder="Search..."
             required
-            rightIcon={() => <Button type="submit">Search</Button>}
             size={72}
             type="search"
-            className="[&_input]:py-4"
+            className="[&_input]:py-4" // add right padding for dropdown
           />
-        </form>
+
+          {/* Dropdown positioned on the right */}
+          <div className="absolute right-1 inset-y-0 end-0 flex items-center pe-2">
+            <Dropdown
+              color="blue"
+              label={<FaFilter className="h-4 w-4 text-gray-50" />}
+              placement="bottom"
+              theme={{
+                arrowIcon: 'hidden',
+                content: twMerge(theme.dropdown.content, 'w-48 p-3'),
+                floating: {
+                  target: twMerge(theme.dropdown.floating.target, 'flex-1'),
+                },
+              }}
+            >
+              {/* Dropdown items */}
+              <DropdownItem>Option 1</DropdownItem>
+              <DropdownItem>Option 2</DropdownItem>
+              <DropdownItem>Option 3</DropdownItem>
+            </Dropdown>
+          </div>
+        </div>
+
         <NavbarCollapse className="mt-4 w-full rounded-xl border border-gray-200 bg-gray-50 py-2 dark:border-gray-600 dark:bg-gray-700 lg:hidden [&>ul]:mt-0">
           <NavbarLink
             href="#"

@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <head>
         <ThemeModeScript />
       </head>
-      <body className={twMerge('bg-gray-50 dark:bg-gray-900')}>
+      <body className={twMerge('bg-primary-50 dark:bg-gray-900')}>
         <GlobalProvider>
           <ThemeInit />
           {children}
