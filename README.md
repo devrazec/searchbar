@@ -55,6 +55,7 @@ npm i -D prettier eslint-config-prettier eslint-plugin-prettier
 -- Copy files from nextjs-15-app-router
 
 .env.local
+.gitignore
 .eslintrc.json
 .prettierignore
 .prettierrc
@@ -100,6 +101,27 @@ npm i -S flowbite-react-icons
 npm i -S tailwind-merge lucide-react tw-animate-css
 npm i -D flowbite-typography
 
+-- Icons
+
+npm i -S iconsax-react @iconify/react react-icons
+
+-- DataBase
+
+npm i -S mongodb
+npm i -S @prisma/client@^6
+npm i -D prisma@^6
+
+-- Initialize Prisma
+
+npx prisma init
+
+-- Generate Prisma Client
+
+npx prisma generate
+
+-- Run Prisma Studio (GUI)
+
+npx prisma studio
 
 ```
 
