@@ -1,3 +1,4 @@
+import Header from '../components/Header';
 import Header1 from '../components/Header1';
 import Header2 from '../components/Header2';
 import Header3 from '../components/Header3';
@@ -11,15 +12,7 @@ import Header9 from '../components/Header9';
 export default function Home() {
   return (
     <>
-      <Header1 />
-      <Header2 />
-      <Header3 />
-      <Header4 />
-      <Header5 />
-      <Header6 />
-      <Header7 />
-      <Header8 />
-      <Header9 />
+      <Header />
     </>
   );
 }

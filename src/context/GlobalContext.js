@@ -1,13 +1,16 @@
 'use client';
 
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import { useThemeMode } from 'flowbite-react';
 
 import dataProductJson from '../data/data-product.json';
 
 export const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
-  const [darkMode, setDarkMode] = useState(false);
+  const { mode, setMode } = useThemeMode();
+  const [themeMode, setThemeMode] = useState(() => mode || 'dark');
+
   const [dataProduct, setDataProduct] = useState(dataProductJson);
 
   const [category, setCategory] = useState([
@@ -58,11 +61,15 @@ export function GlobalProvider({ children }) {
   const [selectedLocation, setSelectedLocation] = useState([]);
   const [selectedGender, setSelectedGender] = useState([]);
 
+  //useEffect(() => {
+  //setThemeMode(mode);
+  //}, [mode]);
+
   return (
     <GlobalContext.Provider
       value={{
-        darkMode,
-        setDarkMode,
+        themeMode,
+        setThemeMode,
         dataProduct,
         setDataProduct,
         category,

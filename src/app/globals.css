@@ -1,8 +1,9 @@
 @import 'tailwindcss';
-@source '../../.flowbite-react/class-list.json';
 @import 'flowbite-react/plugin/tailwindcss';
+@source "../../.flowbite-react/class-list.json";
 
-body {
+@custom-variant dark (&:where(.light, .dark *));
+x body {
   margin: 0;
   padding: 0;
   font-family:

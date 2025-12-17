@@ -96,14 +96,16 @@ gh-pages/_next/.nojekyll
 -- Install Flowbite
 
 npm i -D typescript
+npm i -S flowbite
 npm i -S flowbite-react
-npm i -S flowbite-react-icons
 npm i -S tailwind-merge lucide-react tw-animate-css
 npm i -D flowbite-typography
 
 -- Icons
 
 npm i -S iconsax-react @iconify/react react-icons
+
+npm i -D flowbite-react-icons @iconify-icon/react iconsax-react react-icons flag-icons
 
 -- DataBase
 
