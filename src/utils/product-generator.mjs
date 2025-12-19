@@ -104,7 +104,7 @@ function generateProducts(count = 100) {
 }
 
 // 4️⃣ Generate & save JSON
-const products = generateProducts(100);
+const products = generateProducts(200);
 
 await fs.writeFile(productJson, JSON.stringify(products, null, 2), 'utf-8');
 console.log('✅ Product JSON saved:', productJson.pathname);

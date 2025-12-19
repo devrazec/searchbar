@@ -103,26 +103,17 @@ npm i -D flowbite-typography
 
 -- Icons
 
-npm i -S iconsax-react @iconify/react react-icons
-
 npm i -D flowbite-react-icons @iconify-icon/react iconsax-react react-icons flag-icons
 
 -- Components
 
-npm i -S @mui/material 
-npm i -S @mui/material @emotion/react @emotion/styled @mui/x-data-grid @mui/icons-material @mui/x-data-grid-generator uuid
+npm i -S uuid
 
 npm remove @mui/material
-npm remove @emotion/react
-npm remove @emotion/styled
-npm remove @mui/x-data-grid
-npm remove @mui/icons-material
-npm remove @mui/x-data-grid-generator
 
+-- Maps
 
-
-
-
+npm i -S leaflet leaflet-draw react-leaflet@next react-leaflet-cluster react-leaflet-draw
 
 -- DataBase
 
@@ -157,3 +148,5 @@ https://github.com/devrazec/searchbar
 https://github.com/devrazec/searchbar/tree/gh-pages
 
 # Links
+
+https://www.convertcsv.com/csv-to-json.htm
