@@ -1,34 +1,53 @@
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs/promises';
 
-const sellerJson = new URL('../../src/data/seller-sorted.json', import.meta.url);
+const sellerJson = new URL(
+  '../../src/data/seller-sorted.json',
+  import.meta.url
+);
 const brandJson = new URL('../../src/data/brand-sorted.json', import.meta.url);
 const locationJson = new URL('../../src/data/location.json', import.meta.url);
 const genderJson = new URL('../../src/data/gender.json', import.meta.url);
 const colorJson = new URL('../../src/data/color.json', import.meta.url);
 const categoryJson = new URL('../../src/data/category.json', import.meta.url);
-const rawProductJson = new URL('../../src/data/raw-product.json', import.meta.url);
-const mongodbImageJson = new URL('../../src/data/mongodb-image.json', import.meta.url);
+const rawProductJson = new URL(
+  '../../src/data/raw-product.json',
+  import.meta.url
+);
+const mongodbImageJson = new URL(
+  '../../src/data/mongodb-image.json',
+  import.meta.url
+);
 const productJson = new URL('../../src/data/product.json', import.meta.url);
 
 // 1️⃣ Read all JSON files
-const [sellers, brands, locations, genders, colors, categories, rawProducts, mongodbImages] =
-  await Promise.all([
-    fs.readFile(sellerJson, 'utf-8').then(JSON.parse),
-    fs.readFile(brandJson, 'utf-8').then(JSON.parse),
-    fs.readFile(locationJson, 'utf-8').then(JSON.parse),
-    fs.readFile(genderJson, 'utf-8').then(JSON.parse),
-    fs.readFile(colorJson, 'utf-8').then(JSON.parse),
-    fs.readFile(categoryJson, 'utf-8').then(JSON.parse),
-    fs.readFile(rawProductJson, 'utf-8').then(JSON.parse),
-    fs.readFile(mongodbImageJson, 'utf-8').then(JSON.parse),
-  ]);
+const [
+  sellers,
+  brands,
+  locations,
+  genders,
+  colors,
+  categories,
+  rawProducts,
+  mongodbImages,
+] = await Promise.all([
+  fs.readFile(sellerJson, 'utf-8').then(JSON.parse),
+  fs.readFile(brandJson, 'utf-8').then(JSON.parse),
+  fs.readFile(locationJson, 'utf-8').then(JSON.parse),
+  fs.readFile(genderJson, 'utf-8').then(JSON.parse),
+  fs.readFile(colorJson, 'utf-8').then(JSON.parse),
+  fs.readFile(categoryJson, 'utf-8').then(JSON.parse),
+  fs.readFile(rawProductJson, 'utf-8').then(JSON.parse),
+  fs.readFile(mongodbImageJson, 'utf-8').then(JSON.parse),
+]);
 
 // 2️⃣ Helper functions
 function getRandomLatLng(location) {
   if (!location) return { lat: 0, lng: 0 };
-  const lat = Math.random() * (location.latMax - location.latMin) + location.latMin;
-  const lng = Math.random() * (location.lngMax - location.lngMin) + location.lngMin;
+  const lat =
+    Math.random() * (location.latMax - location.latMin) + location.latMin;
+  const lng =
+    Math.random() * (location.lngMax - location.lngMin) + location.lngMin;
   return { lat, lng };
 }
 
@@ -47,10 +66,12 @@ function getColor(id) {
 // 3️⃣ Generate N products
 function generateProducts(count = 100) {
   return Array.from({ length: count }, (_, index) => {
-    const randomProduct = rawProducts[Math.floor(Math.random() * rawProducts.length)];
+    const randomProduct =
+      rawProducts[Math.floor(Math.random() * rawProducts.length)];
     const randomSeller = sellers[Math.floor(Math.random() * sellers.length)];
     const randomBrand = brands[Math.floor(Math.random() * brands.length)];
-    const randomLocation = locations[Math.floor(Math.random() * locations.length)];
+    const randomLocation =
+      locations[Math.floor(Math.random() * locations.length)];
 
     const { lat, lng } = getRandomLatLng(randomLocation);
     const color = getColor(randomProduct.colorId);

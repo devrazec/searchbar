@@ -67,7 +67,7 @@ import { Icon } from '@iconify-icon/react';
 import HeaderLocation from './HeaderLocation';
 import HeaderBrand from './HeaderBrand';
 
-HeaderBrand
+HeaderBrand;
 
 const Header = () => {
   const {
@@ -900,7 +900,7 @@ const Header = () => {
               </li>
             </ul>
           </Dropdown>
-          
+
           <HeaderLocation />
 
           <NavbarToggle

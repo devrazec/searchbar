@@ -15,14 +15,10 @@ const sorted = companies.sort((a, b) =>
 // 3️⃣ Add value as ID
 const result = sorted.map((item, index) => ({
   ...item,
-  value: index + 1
+  value: index + 1,
 }));
 
 // 4️⃣ Save
-await fs.writeFile(
-  outputPath,
-  JSON.stringify(result, null, 2),
-  'utf-8'
-);
+await fs.writeFile(outputPath, JSON.stringify(result, null, 2), 'utf-8');
 
 console.log('✅ Sorted JSON saved:', outputPath.pathname);

@@ -12,14 +12,10 @@ const data = JSON.parse(raw);
 // 3️⃣ Reassign IDs starting from 1
 const result = data.map((item, index) => ({
   ...item,
-  id: index + 1
+  id: index + 1,
 }));
 
 // 4️⃣ Save
-await fs.writeFile(
-  outputPath,
-  JSON.stringify(result, null, 2),
-  'utf-8'
-);
+await fs.writeFile(outputPath, JSON.stringify(result, null, 2), 'utf-8');
 
 console.log('✅ Updated JSON saved:', outputPath.pathname);

@@ -1,7 +1,10 @@
 import fs from 'fs/promises';
 
 const inputPath = new URL('../../src/data/seller.json', import.meta.url);
-const outputPath = new URL('../../src/data/seller-grouped.json', import.meta.url);
+const outputPath = new URL(
+  '../../src/data/seller-grouped.json',
+  import.meta.url
+);
 
 // 1️⃣ Read file
 const raw = await fs.readFile(inputPath, 'utf-8');
@@ -24,15 +27,11 @@ sorted.forEach((seller, index) => {
 
   result[group].push({
     label: seller,
-    value: index + 1
+    value: index + 1,
   });
 });
 
 // 4️⃣ Save as JSON
-await fs.writeFile(
-  outputPath,
-  JSON.stringify(result, null, 2),
-  'utf-8'
-);
+await fs.writeFile(outputPath, JSON.stringify(result, null, 2), 'utf-8');
 
 console.log('✅ Grouped JSON saved:', outputPath.pathname);
