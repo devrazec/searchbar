@@ -1,0 +1,28 @@
+import fs from 'fs/promises';
+
+const inputPath = new URL('../../src/data/brand.json', import.meta.url);
+const outputPath = new URL('../../src/data/brand-sorted.json', import.meta.url);
+
+// 1️⃣ Read JSON
+const raw = await fs.readFile(inputPath, 'utf-8');
+const companies = JSON.parse(raw);
+
+// 2️⃣ Sort by label
+const sorted = companies.sort((a, b) =>
+  a.label.localeCompare(b.label, 'en', { sensitivity: 'base' })
+);
+
+// 3️⃣ Add value as ID
+const result = sorted.map((item, index) => ({
+  ...item,
+  value: index + 1
+}));
+
+// 4️⃣ Save
+await fs.writeFile(
+  outputPath,
+  JSON.stringify(result, null, 2),
+  'utf-8'
+);
+
+console.log('✅ Sorted JSON saved:', outputPath.pathname);

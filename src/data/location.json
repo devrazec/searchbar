@@ -1,0 +1,122 @@
+[
+    {
+        "label": "Beja",
+        "value": 1,
+        "color": "#38bdf8",
+        "tailwind": "bg-sky-400",
+        "latMin": 37.93,
+        "latMax": 38.02,
+        "lngMin": -7.93,
+        "lngMax": -7.82
+    },
+    {
+        "label": "Braga",
+        "value": 2,
+        "color": "#a3e635",
+        "tailwind": "bg-lime-400",
+        "latMin": 41.53,
+        "latMax": 41.57,
+        "lngMin": -8.47,
+        "lngMax": -8.42
+    },
+    {
+        "label": "Bragança",
+        "value": 3,
+        "color": "#34d399",
+        "tailwind": "bg-emerald-400",
+        "latMin": 41.79,
+        "latMax": 41.83,
+        "lngMin": -6.75,
+        "lngMax": -6.7
+    },
+    {
+        "label": "Coimbra",
+        "value": 4,
+        "color": "#facc15",
+        "tailwind": "bg-yellow-400",
+        "latMin": 40.18,
+        "latMax": 40.23,
+        "lngMin": -8.48,
+        "lngMax": -8.4
+    },
+    {
+        "label": "Faro",
+        "value": 5,
+        "color": "#fbbf24",
+        "tailwind": "bg-amber-400",
+        "latMin": 37.0,
+        "latMax": 37.2,
+        "lngMin": -8.1,
+        "lngMax": -7.8
+    },
+    {
+        "label": "Guarda",
+        "value": 6,
+        "color": "#22d3ee",
+        "tailwind": "bg-cyan-400",
+        "latMin": 40.53,
+        "latMax": 40.56,
+        "lngMin": -7.48,
+        "lngMax": -7.42
+    },
+    {
+        "label": "Leiria",
+        "value": 7,
+        "color": "#2dd4bf",
+        "tailwind": "bg-teal-400",
+        "latMin": 39.74,
+        "latMax": 39.76,
+        "lngMin": -8.87,
+        "lngMax": -8.8
+    },
+    {
+        "label": "Lisbon",
+        "value": 8,
+        "color": "#f87171",
+        "tailwind": "bg-red-400",
+        "latMin": 38.69,
+        "latMax": 38.82,
+        "lngMin": -9.25,
+        "lngMax": -9.05
+    },
+    {
+        "label": "Porto",
+        "value": 9,
+        "color": "#fb923c",
+        "tailwind": "bg-orange-400",
+        "latMin": 41.11,
+        "latMax": 41.19,
+        "lngMin": -8.74,
+        "lngMax": -8.53
+    },
+    {
+        "label": "Setubal",
+        "value": 10,
+        "color": "#c084fc",
+        "tailwind": "bg-purple-400",
+        "latMin": 38.51,
+        "latMax": 38.56,
+        "lngMin": -8.92,
+        "lngMax": -8.84
+    },
+    {
+        "label": "Viana",
+        "value": 11,
+        "color": "#60a5fa",
+        "tailwind": "bg-blue-400",
+        "latMin": 41.67,
+        "latMax": 41.72,
+        "lngMin": -8.86,
+        "lngMax": -8.77
+    },
+    {
+        "label": "VilaReal",
+        "value": 12,
+        "color": "#818cf8",
+        "tailwind": "bg-indigo-400",
+        "latMin": 41.27,
+        "latMax": 41.33,
+        "lngMin": -7.77,
+        "lngMax": -7.65
+    }
+]

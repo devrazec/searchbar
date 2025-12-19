@@ -1,0 +1,25 @@
+import fs from 'fs/promises';
+
+const inputPath = new URL('../../src/data/raw-product.json', import.meta.url);
+const outputPath = new URL('../../src/data/raw-product2.json', import.meta.url);
+
+// 1️⃣ Read file
+const raw = await fs.readFile(inputPath, 'utf-8');
+
+// 2️⃣ Parse JSON
+const data = JSON.parse(raw);
+
+// 3️⃣ Reassign IDs starting from 1
+const result = data.map((item, index) => ({
+  ...item,
+  id: index + 1
+}));
+
+// 4️⃣ Save
+await fs.writeFile(
+  outputPath,
+  JSON.stringify(result, null, 2),
+  'utf-8'
+);
+
+console.log('✅ Updated JSON saved:', outputPath.pathname);

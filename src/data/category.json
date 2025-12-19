@@ -1,0 +1,94 @@
+[
+    {
+        "label": "Blazers",
+        "value": 1
+    },
+    {
+        "label": "Booties",
+        "value": 2
+    },
+    {
+        "label": "Capris",
+        "value": 3
+    },
+    {
+        "label": "Churidar",
+        "value": 4
+    },
+    {
+        "label": "Clothing Set",
+        "value": 5
+    },
+    {
+        "label": "Dresses",
+        "value": 6
+    },
+    {
+        "label": "Innerwear Vests",
+        "value": 7
+    },
+    {
+        "label": "Jackets",
+        "value": 8
+    },
+    {
+        "label": "Jeans",
+        "value": 9
+    },
+    {
+        "label": "Kurta Sets",
+        "value": 10
+    },
+    {
+        "label": "Kurtas",
+        "value": 11
+    },
+    {
+        "label": "Lehenga Choli",
+        "value": 12
+    },
+    {
+        "label": "Leggings",
+        "value": 13
+    },
+    {
+        "label": "Shirts",
+        "value": 14
+    },
+    {
+        "label": "Shorts",
+        "value": 15
+    },
+    {
+        "label": "Skirts",
+        "value": 16
+    },
+    {
+        "label": "Salwar",
+        "value": 17
+    },
+    {
+        "label": "Sweatshirts",
+        "value": 18
+    },
+    {
+        "label": "Tops",
+        "value": 19
+    },
+    {
+        "label": "Tshirts",
+        "value": 20
+    },
+    {
+        "label": "Trousers",
+        "value": 21
+    },
+    {
+        "label": "Rompers",
+        "value": 22
+    },
+    {
+        "label": "Waistcoat",
+        "value": 23
+    }
+]

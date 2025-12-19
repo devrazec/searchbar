@@ -1,0 +1,39 @@
+import fs from 'fs/promises';
+
+const inputPath = new URL('../../src/data/brand.json', import.meta.url);
+const outputPath = new URL('../../src/data/brand-grouped.json', import.meta.url);
+
+// 1️⃣ Read JSON
+const raw = await fs.readFile(inputPath, 'utf-8');
+const data = JSON.parse(raw);
+
+// 2️⃣ Sort by label
+const sorted = data.sort((a, b) =>
+  a.label.localeCompare(b.label, 'en', { sensitivity: 'base' })
+);
+
+// 3️⃣ Group by first letter
+const result = {};
+
+sorted.forEach((item, index) => {
+  const group = item.label.charAt(0).toUpperCase();
+
+  if (!result[group]) {
+    result[group] = [];
+  }
+
+  result[group].push({
+    ...item,
+    value: index + 1
+  });
+});
+
+// 4️⃣ Save
+await fs.writeFile(
+  outputPath,
+  JSON.stringify(result, null, 2),
+  'utf-8'
+);
+
+console.log('✅ Grouped JSON saved:', outputPath.pathname);
+

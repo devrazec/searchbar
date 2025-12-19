@@ -107,6 +107,23 @@ npm i -S iconsax-react @iconify/react react-icons
 
 npm i -D flowbite-react-icons @iconify-icon/react iconsax-react react-icons flag-icons
 
+-- Components
+
+npm i -S @mui/material 
+npm i -S @mui/material @emotion/react @emotion/styled @mui/x-data-grid @mui/icons-material @mui/x-data-grid-generator uuid
+
+npm remove @mui/material
+npm remove @emotion/react
+npm remove @emotion/styled
+npm remove @mui/x-data-grid
+npm remove @mui/icons-material
+npm remove @mui/x-data-grid-generator
+
+
+
+
+
+
 -- DataBase
 
 npm i -S mongodb

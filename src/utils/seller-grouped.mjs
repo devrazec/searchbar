@@ -1,0 +1,38 @@
+import fs from 'fs/promises';
+
+const inputPath = new URL('../../src/data/seller.json', import.meta.url);
+const outputPath = new URL('../../src/data/seller-grouped.json', import.meta.url);
+
+// 1️⃣ Read file
+const raw = await fs.readFile(inputPath, 'utf-8');
+const dataSellerJson = JSON.parse(raw);
+
+// 2️⃣ Sort alphabetically
+const sorted = dataSellerJson.sort((a, b) =>
+  a.localeCompare(b, 'en', { sensitivity: 'base' })
+);
+
+// 3️⃣ Group + assign IDs
+const result = {};
+
+sorted.forEach((seller, index) => {
+  const group = seller.charAt(0).toUpperCase();
+
+  if (!result[group]) {
+    result[group] = [];
+  }
+
+  result[group].push({
+    label: seller,
+    value: index + 1
+  });
+});
+
+// 4️⃣ Save as JSON
+await fs.writeFile(
+  outputPath,
+  JSON.stringify(result, null, 2),
+  'utf-8'
+);
+
+console.log('✅ Grouped JSON saved:', outputPath.pathname);
