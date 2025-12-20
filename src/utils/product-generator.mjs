@@ -87,6 +87,7 @@ function generateProducts(count = 100) {
       status: Math.random() > 0.5 ? 'active' : 'inactive',
       available: Math.random() >= 0.2,
       date: new Date().toLocaleDateString('pt-PT'),
+      rate: Math.floor(Math.random() * 5) + 1,
 
       image: randomProduct.image,
       mongodbImage: getMongodbImageId(randomProduct.image),
