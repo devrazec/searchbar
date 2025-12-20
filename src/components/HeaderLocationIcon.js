@@ -12,7 +12,7 @@ const LeafletMap = dynamic(() => import('./LeafletMap'), {
   ssr: false,
 });
 
-const HeaderLocation = () => {
+const HeaderLocationIcon = () => {
   const {
     location,
     setLocation,
@@ -24,6 +24,7 @@ const HeaderLocation = () => {
     setFilteredProduct,
     totalFilteredProduct,
     setTotalFilteredProduct,
+
   } = useContext(GlobalContext);
 
   const countProductsByLocation = (products = []) => {
@@ -86,7 +87,6 @@ const HeaderLocation = () => {
                   <Checkbox
                     id={`location-${loc.value}`}
                     checked={selectedLocation.includes(loc.value)}
-                    //disabled={!locationCounts[loc.value]}
                     onChange={() => toggleLocation(loc.value)}
                   />
 
@@ -127,4 +127,4 @@ const HeaderLocation = () => {
   );
 };
 
-export default React.memo(HeaderLocation);
+export default React.memo(HeaderLocationIcon);

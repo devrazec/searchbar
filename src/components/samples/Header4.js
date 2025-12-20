@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useContext, useState } from 'react';
-import { GlobalContext } from '../context/GlobalContext';
+import { GlobalContext } from '../../context/GlobalContext';
 import { Checkbox, Dropdown, theme } from 'flowbite-react';
 import { twMerge } from 'tailwind-merge';
 

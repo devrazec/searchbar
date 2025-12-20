@@ -2,7 +2,7 @@
 
 import React, { useContext, useState } from 'react';
 import Image from 'next/image';
-import { GlobalContext } from '../context/GlobalContext';
+import { GlobalContext } from '../../context/GlobalContext';
 
 import {
   Avatar,

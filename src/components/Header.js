@@ -64,8 +64,12 @@ import { twMerge } from 'tailwind-merge';
 import { FaCog, FaFilter } from 'react-icons/fa';
 
 import { Icon } from '@iconify-icon/react';
-import HeaderLocation from './HeaderLocation';
+import HeaderLocationIcon from './HeaderLocationIcon';
+import HeaderSeller from './HeaderSeller';
 import HeaderBrand from './HeaderBrand';
+import HeaderColor from './HeaderColor';
+import HeaderRate from './HeaderRate';
+
 
 const Header = () => {
   const {
@@ -105,10 +109,8 @@ const Header = () => {
         <div className="lg:flex lg:items-center lg:gap-8 justify-center">
           <NavbarBrand>
             {/* Light mode */}
-            <Link
-              href="/"
-              className="flex items-center gap-2 h-8 text-gray-900 dark:hidden"
-            >
+           <>
+            <div className="flex items-center gap-2 h-8 text-gray-900 dark:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={48}
@@ -130,13 +132,11 @@ const Header = () => {
               <span className="text-xl sm:text-2xl font-bold tracking-tight leading-none">
                 Search<span className="text-blue-500">Bar</span>
               </span>
-            </Link>
+              </div>
 
             {/* Dark mode */}
-            <Link
-              href="/"
-              className="hidden dark:flex items-center gap-2 h-8 text-white"
-            >
+           
+            <div className="hidden dark:flex items-center gap-2 h-8 text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={48}
@@ -158,7 +158,9 @@ const Header = () => {
               <span className="text-xl sm:text-2xl font-bold tracking-tight leading-none">
                 Search<span className="text-blue-500">Bar</span>
               </span>
-            </Link>
+              </div>
+              </>
+
           </NavbarBrand>
 
           <div className="relative hidden lg:block">
@@ -226,10 +228,8 @@ const Header = () => {
                         },
                       }}
                     >
-                      <Tabs.Item active title="Brand">
-                        <HeaderBrand />
-                      </Tabs.Item>
-                      <Tabs.Item title="Advanced Filters">
+                      
+                      <Tabs.Item active title="Advanced Filters">
                         <div className="space-y-4">
                           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                             <div className="grid grid-cols-2 gap-3">
@@ -367,154 +367,8 @@ const Header = () => {
                             </ul>
                           </div>
                           <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-                            <div>
-                              <h6 className="mb-2 text-sm font-medium text-black dark:text-white">
-                                Colour
-                              </h6>
-                              <div className="space-y-2">
-                                <div className="flex items-center">
-                                  <Checkbox id="blue" name="blue" />
-                                  <Label
-                                    htmlFor="blue"
-                                    className="ml-2 flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    <div className="mr-2 h-3.5 w-3.5 rounded-full bg-primary-600"></div>
-                                    Blue
-                                  </Label>
-                                </div>
-                                <div className="flex items-center">
-                                  <Checkbox id="gray" name="gray" />
-
-                                  <Label
-                                    htmlFor="gray"
-                                    className="ml-2 flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    <div className="mr-2 h-3.5 w-3.5 rounded-full bg-gray-400"></div>
-                                    Gray
-                                  </Label>
-                                </div>
-                                <div className="flex items-center">
-                                  <Checkbox
-                                    defaultChecked
-                                    id="green"
-                                    name="green"
-                                  />
-                                  <Label
-                                    htmlFor="green"
-                                    className="ml-2 flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    <div className="mr-2 h-3.5 w-3.5 rounded-full bg-green-400"></div>
-                                    Green
-                                  </Label>
-                                </div>
-                                <div className="flex items-center">
-                                  <Checkbox id="pink" name="pink" />
-                                  <Label
-                                    htmlFor="pink"
-                                    className="ml-2 flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    <div className="mr-2 h-3.5 w-3.5 rounded-full bg-pink-400"></div>
-                                    Pink
-                                  </Label>
-                                </div>
-                                <div className="flex items-center">
-                                  <Checkbox
-                                    defaultChecked
-                                    id="red"
-                                    name="red"
-                                  />
-                                  <Label
-                                    htmlFor="red"
-                                    className="ml-2 flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    <div className="mr-2 h-3.5 w-3.5 rounded-full bg-red-500"></div>
-                                    Red
-                                  </Label>
-                                </div>
-                              </div>
-                            </div>
-                            <div>
-                              <h6 className="mb-2 text-sm font-medium text-black dark:text-white">
-                                Rating
-                              </h6>
-                              <div className="space-y-2">
-                                <div className="flex items-center">
-                                  <Radio id="five-stars" name="rating" />
-                                  <Label
-                                    htmlFor="five-stars"
-                                    className="ml-2 flex items-center"
-                                  >
-                                    <Rating>
-                                      <RatingStar />
-                                      <RatingStar />
-                                      <RatingStar />
-                                      <RatingStar />
-                                      <RatingStar />
-                                    </Rating>
-                                  </Label>
-                                </div>
-                                <div className="flex items-center">
-                                  <Radio id="four-stars" name="rating" />
-                                  <Label
-                                    htmlFor="four-stars"
-                                    className="ml-2 flex items-center"
-                                  >
-                                    <Rating>
-                                      <RatingStar />
-                                      <RatingStar />
-                                      <RatingStar />
-                                      <RatingStar />
-                                      <RatingStar filled={false} />
-                                    </Rating>
-                                  </Label>
-                                </div>
-                                <div className="flex items-center">
-                                  <Radio id="three-stars" name="rating" />
-                                  <Label
-                                    htmlFor="three-stars"
-                                    className="ml-2 flex items-center"
-                                  >
-                                    <Rating>
-                                      <RatingStar />
-                                      <RatingStar />
-                                      <RatingStar />
-                                      <RatingStar filled={false} />
-                                      <RatingStar filled={false} />
-                                    </Rating>
-                                  </Label>
-                                </div>
-                                <div className="flex items-center">
-                                  <Radio id="two-stars" name="rating" />
-                                  <Label
-                                    htmlFor="two-stars"
-                                    className="ml-2 flex items-center"
-                                  >
-                                    <Rating>
-                                      <RatingStar />
-                                      <RatingStar />
-                                      <RatingStar filled={false} />
-                                      <RatingStar filled={false} />
-                                      <RatingStar filled={false} />
-                                    </Rating>
-                                  </Label>
-                                </div>
-                                <div className="flex items-center">
-                                  <Radio id="one-stars" name="rating" />
-                                  <Label
-                                    htmlFor="one-stars"
-                                    className="ml-2 flex items-center"
-                                  >
-                                    <Rating>
-                                      <RatingStar />
-                                      <RatingStar filled={false} />
-                                      <RatingStar filled={false} />
-                                      <RatingStar filled={false} />
-                                      <RatingStar filled={false} />
-                                    </Rating>
-                                  </Label>
-                                </div>
-                              </div>
-                            </div>
+                            <HeaderColor />
+                            <HeaderRate />
                             <div>
                               <h6 className="mb-2 text-sm font-medium text-black dark:text-white">
                                 Weight
@@ -666,6 +520,12 @@ const Header = () => {
                             </ul>
                           </div>
                         </div>
+                      </Tabs.Item>
+                      <Tabs.Item title="Seller">
+                        <HeaderSeller />
+                      </Tabs.Item>
+                      <Tabs.Item title="Brand">
+                        <HeaderBrand />
                       </Tabs.Item>
                     </Tabs>
                   </div>
@@ -899,7 +759,7 @@ const Header = () => {
             </ul>
           </Dropdown>
 
-          <HeaderLocation />
+          <HeaderLocationIcon />
 
           <NavbarToggle
             barIcon={() => (

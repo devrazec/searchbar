@@ -86,8 +86,9 @@ function generateProducts(count = 100) {
       tax: `${(Math.random() * 20).toFixed(2)} %`,
       status: Math.random() > 0.5 ? 'active' : 'inactive',
       available: Math.random() >= 0.2,
+      featured: Math.random() >= 0.1,
       date: new Date().toLocaleDateString('pt-PT'),
-      rate: Math.floor(Math.random() * 5) + 1,
+      rateId: Math.floor(Math.random() * 5) + 1,
 
       image: randomProduct.image,
       mongodbImage: getMongodbImageId(randomProduct.image),

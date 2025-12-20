@@ -40,6 +40,7 @@ export function GlobalProvider({ children }) {
   const [color, setColor] = useState(dataColorJson);
   const [seller, setSeller] = useState(dataSellerJson);
   const [brand, setBrand] = useState(dataBrandJson);
+
   const [sellerGrouped, setSellerGrouped] = useState(dataSellerGroupedJson);
   const [brandGrouped, setBrandGrouped] = useState(dataBrandGroupedJson);
 
@@ -49,6 +50,7 @@ export function GlobalProvider({ children }) {
   const [selectedColor, setSelectedColor] = useState([]);
   const [selectedSeller, setSelectedSeller] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState([]);
+  const [selectedRate, setSelectedRate] = useState([]);
 
   const [geoZoomView, setGeoZoomView] = useState(6);
   const [geoInitialView, setGeoInitialView] = useState([39.3999, -8.2245]);
@@ -115,6 +117,10 @@ export function GlobalProvider({ children }) {
       filtered = filtered.filter(p => selectedGender.includes(p.genderId));
     }
 
+    if (selectedRate.length > 0) {
+      filtered = filtered.filter(p => selectedRate.includes(p.rateId));
+    }
+
     if (selectedProductName) {
       filtered = filtered.filter(p =>
         p.name.toLowerCase().includes(selectedProductName.toLowerCase())
@@ -150,6 +156,7 @@ export function GlobalProvider({ children }) {
     selectedColor,
     selectedGender,
     selectedProductName,
+    selectedRate,
     sortField,
     sortOrder,
   ]);
@@ -190,6 +197,7 @@ export function GlobalProvider({ children }) {
         setSelectedSeller,
         selectedBrand,
         setSelectedBrand,
+        selectedRate, setSelectedRate,
 
         geoZoomView,
         setGeoZoomView,
