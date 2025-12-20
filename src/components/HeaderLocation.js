@@ -5,7 +5,12 @@ import { GlobalContext } from '../context/GlobalContext';
 import { Checkbox, Dropdown, theme } from 'flowbite-react';
 import { MapPin, MapPinAlt } from 'flowbite-react-icons/outline';
 import { twMerge } from 'tailwind-merge';
-import LeafletMap from './LeafletMap';
+
+import dynamic from 'next/dynamic';
+
+const LeafletMap = dynamic(() => import('./LeafletMap'), {
+  ssr: false,
+});
 
 const HeaderLocation = () => {
   const {

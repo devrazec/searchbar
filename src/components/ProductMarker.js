@@ -10,13 +10,7 @@ const createPriceIcon = (item, isHovered) =>
   L.divIcon({
     className: 'price-marker',
     html: `
-      <div
-        class="
-          px-2 py-1 text-sm font-bold rounded-xl border
-          ${isHovered ? 'bg-black text-white' : 'bg-white text-black'}
-        "
-        style="border:1px solid rgba(0,0,0,0.1);"
-      >
+      <div class="price-marker-content ${isHovered ? 'hovered' : ''}">
         ${item.price}
       </div>
     `,

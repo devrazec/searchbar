@@ -26,3 +26,15 @@ x body {
   margin: 0;
   padding: 0;
 }
+
+.price-marker {
+  pointer-events: auto;
+}
+
+.price-marker-content {
+  @apply px-2 py-1 text-sm font-bold rounded-xl border-b bg-white text-black;
+}
+
+.price-marker-content.hovered {
+  @apply bg-black text-white;
+}

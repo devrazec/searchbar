@@ -31,7 +31,9 @@ const LeafletMap = () => {
         width: '100%',
       }}
     >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <TileLayer 
+      attribution="&copy; Devrazec contribution"
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
       <ResetMapView />
       <ShowMyLocation />
