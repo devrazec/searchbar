@@ -3,6 +3,7 @@
 import React, { useContext, useMemo } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { Checkbox, Label, Rating, RatingStar } from 'flowbite-react';
+import { HiOutlineX } from 'react-icons/hi';
 
 const HeaderRate = () => {
     const {
@@ -32,13 +33,33 @@ const HeaderRate = () => {
         );
     };
 
+    const resetRates = () => setSelectedRate([]);
+
     return (
         <div>
-            <h6 className="mb-2 text-sm font-medium text-black dark:text-white">
-                Rating
-            </h6>
+            <div className="flex items-center justify-between">
+                <h6 className="text-sm font-medium text-black dark:text-white">
+                    Rating
+                </h6>
 
-            <ul className="space-y-2">
+                <button
+                    type="button"
+                    onClick={resetRates}
+                    disabled={selectedRate.length === 0}
+                    title="Clear rate filter"
+                    className="
+                        inline-flex items-center justify-center
+                        rounded p-1
+                        text-gray-400 hover:text-gray-700
+                        dark:text-gray-500 dark:hover:text-gray-200
+                        disabled:opacity-40 disabled:cursor-not-allowed mr-4
+                      "
+                >
+                    <HiOutlineX className="h-4 w-4" />
+                </button>
+            </div>
+
+            <ul className="space-y-2 mt-1">
                 {rates.map(rate => (
                     <li
                         key={rate}

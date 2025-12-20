@@ -67,8 +67,11 @@ import { Icon } from '@iconify-icon/react';
 import HeaderLocationIcon from './HeaderLocationIcon';
 import HeaderSeller from './HeaderSeller';
 import HeaderBrand from './HeaderBrand';
+import HeaderCategory from './HeaderCategory';
 import HeaderColor from './HeaderColor';
 import HeaderRate from './HeaderRate';
+import HeaderGender from './HeaderGender';
+import HeaderLocation from './HeaderLocation';
 
 
 const Header = () => {
@@ -89,16 +92,17 @@ const Header = () => {
     setSelectedLocation,
     selectedGender,
     setSelectedGender,
+    setSelectedRate,
+    setSelectedColor,
   } = useContext(GlobalContext);
 
-  //const { computedMode } = useThemeMode(themeMode);
-
-  const [isDarkMode] = useState(false);
-  const [item1, setItem1] = useState(2);
-  const [item2, setItem2] = useState(3);
-  const [item3, setItem3] = useState(1);
-  const [item4, setItem4] = useState(1);
-  const [item5, setItem5] = useState(2);
+  const resetAll = () => {
+    setSelectedRate([]);
+    setSelectedColor([]);
+    setSelectedGender([]);
+    setSelectedCategory([]);
+    setSelectedLocation([]);
+  };
 
   return (
     <>
@@ -109,57 +113,57 @@ const Header = () => {
         <div className="lg:flex lg:items-center lg:gap-8 justify-center">
           <NavbarBrand>
             {/* Light mode */}
-           <>
-            <div className="flex items-center gap-2 h-8 text-gray-900 dark:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={48}
-                height={48}
-                viewBox="0 0 48 48"
-              >
-                <g fill="none" stroke="#000" strokeWidth={4}>
-                  <path strokeLinecap="round" d="M4 7H44" />
-                  <path strokeLinecap="round" d="M4 23H15" />
-                  <path strokeLinecap="round" d="M4 39H15" />
-                  <path
-                    fill="#3b82f6"
-                    d="M31.5 34C36.1944 34 40 30.1944 40 25.5C40 20.8056 36.1944 17 31.5 17C26.8056 17 23 20.8056 23 25.5C23 30.1944 26.8056 34 31.5 34Z"
-                  />
-                  <path strokeLinecap="round" d="M37 32L44 39.0505" />
-                </g>
-              </svg>
+            <>
+              <div className="flex items-center gap-2 h-8 text-gray-900 dark:hidden">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={48}
+                  height={48}
+                  viewBox="0 0 48 48"
+                >
+                  <g fill="none" stroke="#000" strokeWidth={4}>
+                    <path strokeLinecap="round" d="M4 7H44" />
+                    <path strokeLinecap="round" d="M4 23H15" />
+                    <path strokeLinecap="round" d="M4 39H15" />
+                    <path
+                      fill="#3b82f6"
+                      d="M31.5 34C36.1944 34 40 30.1944 40 25.5C40 20.8056 36.1944 17 31.5 17C26.8056 17 23 20.8056 23 25.5C23 30.1944 26.8056 34 31.5 34Z"
+                    />
+                    <path strokeLinecap="round" d="M37 32L44 39.0505" />
+                  </g>
+                </svg>
 
-              <span className="text-xl sm:text-2xl font-bold tracking-tight leading-none">
-                Search<span className="text-blue-500">Bar</span>
-              </span>
+                <span className="text-xl sm:text-2xl font-bold tracking-tight leading-none">
+                  Search<span className="text-blue-500">Bar</span>
+                </span>
               </div>
 
-            {/* Dark mode */}
-           
-            <div className="hidden dark:flex items-center gap-2 h-8 text-white">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={48}
-                height={48}
-                viewBox="0 0 48 48"
-              >
-                <g fill="none" stroke="#fff" strokeWidth={4}>
-                  <path strokeLinecap="round" d="M4 7H44" />
-                  <path strokeLinecap="round" d="M4 23H15" />
-                  <path strokeLinecap="round" d="M4 39H15" />
-                  <path
-                    fill="#3b82f6"
-                    d="M31.5 34C36.1944 34 40 30.1944 40 25.5C40 20.8056 36.1944 17 31.5 17C26.8056 17 23 20.8056 23 25.5C23 30.1944 26.8056 34 31.5 34Z"
-                  />
-                  <path strokeLinecap="round" d="M37 32L44 39.0505" />
-                </g>
-              </svg>
+              {/* Dark mode */}
 
-              <span className="text-xl sm:text-2xl font-bold tracking-tight leading-none">
-                Search<span className="text-blue-500">Bar</span>
-              </span>
+              <div className="hidden dark:flex items-center gap-2 h-8 text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={48}
+                  height={48}
+                  viewBox="0 0 48 48"
+                >
+                  <g fill="none" stroke="#fff" strokeWidth={4}>
+                    <path strokeLinecap="round" d="M4 7H44" />
+                    <path strokeLinecap="round" d="M4 23H15" />
+                    <path strokeLinecap="round" d="M4 39H15" />
+                    <path
+                      fill="#3b82f6"
+                      d="M31.5 34C36.1944 34 40 30.1944 40 25.5C40 20.8056 36.1944 17 31.5 17C26.8056 17 23 20.8056 23 25.5C23 30.1944 26.8056 34 31.5 34Z"
+                    />
+                    <path strokeLinecap="round" d="M37 32L44 39.0505" />
+                  </g>
+                </svg>
+
+                <span className="text-xl sm:text-2xl font-bold tracking-tight leading-none">
+                  Search<span className="text-blue-500">Bar</span>
+                </span>
               </div>
-              </>
+            </>
 
           </NavbarBrand>
 
@@ -228,7 +232,7 @@ const Header = () => {
                         },
                       }}
                     >
-                      
+
                       <Tabs.Item active title="Advanced Filters">
                         <div className="space-y-4">
                           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -292,232 +296,17 @@ const Header = () => {
                               </div>
                             </div>
                             <div className="space-y-3">
-                              <div>
-                                <Label
-                                  htmlFor="min-delivery-time"
-                                  className="block text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  Min Delivery Time (Days)
-                                </Label>
-                                <RangeSlider
-                                  defaultValue="30"
-                                  id="min-delivery-time"
-                                  name="min-delivery-time"
-                                  max="50"
-                                  min="3"
-                                  step="1"
-                                />
-                              </div>
-                              <TextInput
-                                defaultValue="30"
-                                id="min-delivery-time-input"
-                                name="min-delivery-time-input"
-                                max="50"
-                                min="3"
-                                required
-                                type="number"
-                              />
+                              <HeaderRate />
                             </div>
                           </div>
-                          <div>
-                            <h6 className="mb-2 text-sm font-medium text-black dark:text-white">
-                              Condition
-                            </h6>
-                            <ul className="flex w-full items-center rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white">
-                              <li className="w-full border-r border-gray-200 dark:border-gray-600">
-                                <div className="flex items-center pl-3">
-                                  <Radio
-                                    defaultChecked
-                                    id="condition-all"
-                                    name="list-radio"
-                                  />
-                                  <Label
-                                    htmlFor="condition-all"
-                                    className="ml-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    All
-                                  </Label>
-                                </div>
-                              </li>
-                              <li className="w-full border-r border-gray-200 dark:border-gray-600">
-                                <div className="flex items-center pl-3">
-                                  <Radio id="condition-new" name="list-radio" />
-                                  <Label
-                                    htmlFor="condition-new"
-                                    className="ml-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    New
-                                  </Label>
-                                </div>
-                              </li>
-                              <li className="w-full">
-                                <div className="flex items-center pl-3">
-                                  <Radio
-                                    id="condition-used"
-                                    name="list-radio"
-                                  />
-                                  <Label
-                                    htmlFor="condition-used"
-                                    className="ml-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    Used
-                                  </Label>
-                                </div>
-                              </li>
-                            </ul>
+                          <div className="grid grid-cols-2 gap-3">
+                            <HeaderGender />
                           </div>
                           <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+                            <HeaderCategory />
                             <HeaderColor />
-                            <HeaderRate />
-                            <div>
-                              <h6 className="mb-2 text-sm font-medium text-black dark:text-white">
-                                Weight
-                              </h6>
-                              <div className="space-y-2">
-                                <div className="flex items-center">
-                                  <Checkbox id="under-1-kg" name="under-1-kg" />
-                                  <Label
-                                    htmlFor="under-1-kg"
-                                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    Under 1 kg
-                                  </Label>
-                                </div>
-                                <div className="flex items-center">
-                                  <Checkbox
-                                    defaultChecked
-                                    id="1-1-5-kg"
-                                    name="1-1-5-kg"
-                                  />
-                                  <Label
-                                    htmlFor="1-1-5-kg"
-                                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    1-1,5 kg
-                                  </Label>
-                                </div>
-                                <div className="flex items-center">
-                                  <Checkbox id="1-5-2-kg" name="1-5-2-kg" />
-                                  <Label
-                                    htmlFor="1-5-2-kg"
-                                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    1,5-2 kg
-                                  </Label>
-                                </div>
-                                <div className="flex items-center">
-                                  <Checkbox id="2-5-3-kg" name="2-5-3-kg" />
-                                  <Label
-                                    htmlFor="2-5-3-kg"
-                                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    2,5-3 kg
-                                  </Label>
-                                </div>
-                                <div className="flex items-center">
-                                  <Checkbox id="over-3-kg" name="over-3-kg" />
-                                  <Label
-                                    htmlFor="over-3-kg"
-                                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                  >
-                                    Over 3 kg
-                                  </Label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <h6 className="mb-2 text-sm font-medium text-black dark:text-white">
-                              Delivery type
-                            </h6>
-                            <ul className="grid grid-cols-2 gap-4">
-                              <li>
-                                <Radio
-                                  defaultChecked
-                                  id="delivery-usa"
-                                  name="delivery"
-                                  value="delivery-usa"
-                                  className="peer hidden"
-                                />
-                                <Label
-                                  htmlFor="delivery-usa"
-                                  className="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5"
-                                >
-                                  <div className="block">
-                                    <div className="w-full text-lg font-semibold">
-                                      USA
-                                    </div>
-                                    <div className="w-full">
-                                      Delivery only for USA
-                                    </div>
-                                  </div>
-                                </Label>
-                              </li>
-                              <li>
-                                <Radio
-                                  id="delivery-europe"
-                                  name="delivery"
-                                  value="delivery-europe"
-                                  className="peer hidden"
-                                />
-                                <Label
-                                  htmlFor="delivery-europe"
-                                  className="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5"
-                                >
-                                  <div className="block">
-                                    <div className="w-full text-lg font-semibold">
-                                      Europe
-                                    </div>
-                                    <div className="w-full">
-                                      Delivery only for USA
-                                    </div>
-                                  </div>
-                                </Label>
-                              </li>
-                              <li>
-                                <Radio
-                                  defaultChecked
-                                  id="delivery-asia"
-                                  name="delivery"
-                                  value="delivery-asia"
-                                  className="peer hidden"
-                                />
-                                <Label
-                                  htmlFor="delivery-asia"
-                                  className="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5"
-                                >
-                                  <div className="block">
-                                    <div className="w-full text-lg font-semibold">
-                                      Asia
-                                    </div>
-                                    <div className="w-full">
-                                      Delivery only for Asia
-                                    </div>
-                                  </div>
-                                </Label>
-                              </li>
-                              <li>
-                                <Radio
-                                  id="delivery-australia"
-                                  name="delivery"
-                                  value="delivery-australia"
-                                  className="peer hidden"
-                                />
-                                <Label
-                                  htmlFor="delivery-australia"
-                                  className="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500 md:p-5"
-                                >
-                                  <div className="block">
-                                    <div className="w-full text-lg font-semibold">
-                                      Australia
-                                    </div>
-                                    <div className="w-full">
-                                      Delivery only for Australia
-                                    </div>
-                                  </div>
-                                </Label>
-                              </li>
-                            </ul>
+
+                            <HeaderLocation />
                           </div>
                         </div>
                       </Tabs.Item>
@@ -531,8 +320,8 @@ const Header = () => {
                   </div>
                   <div className="mt-5 flex items-center space-x-4 rounded-b dark:border-gray-600">
                     <Button type="submit">Show 50 results</Button>
-                    <Button color="gray" type="reset">
-                      Reset
+                    <Button color="gray" type="reset" onClick={resetAll}>
+                      Reset All
                     </Button>
                   </div>
                 </div>
