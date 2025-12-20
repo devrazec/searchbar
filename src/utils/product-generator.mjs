@@ -89,6 +89,7 @@ function generateProducts(count = 100) {
       featured: Math.random() >= 0.1,
       date: new Date().toLocaleDateString('pt-PT'),
       rateId: Math.floor(Math.random() * 5) + 1,
+      delivery: Math.floor(Math.random() * 30) + 1,
 
       image: randomProduct.image,
       mongodbImage: getMongodbImageId(randomProduct.image),
