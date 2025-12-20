@@ -113,7 +113,7 @@ npm remove @mui/material
 
 -- Maps
 
-npm i -S leaflet leaflet-draw react-leaflet@next react-leaflet-cluster react-leaflet-draw 
+npm i -S leaflet leaflet-draw react-leaflet@next react-leaflet-cluster react-leaflet-draw
 
 npm i -S leaflet-fullscreen
 

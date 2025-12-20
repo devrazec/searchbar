@@ -8,9 +8,7 @@ import { GlobalContext } from '../context/GlobalContext';
 const PortugalLayer = () => {
   const map = useMap();
 
-  const {
-    geoPortugal,
-  } = useContext(GlobalContext);
+  const { geoPortugal } = useContext(GlobalContext);
 
   useEffect(() => {
     if (!map) return;

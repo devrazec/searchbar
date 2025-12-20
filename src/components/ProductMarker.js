@@ -50,9 +50,7 @@ const ProductMarker = () => {
 
               {/* Content */}
               <div className="p-3 space-y-2">
-                <h5
-                  className="text-sm font-medium text-gray-900 line-clamp-2"
-                >
+                <h5 className="text-sm font-medium text-gray-900 line-clamp-2">
                   {item.label}
                 </h5>
 

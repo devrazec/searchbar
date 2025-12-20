@@ -80,7 +80,9 @@ export function GlobalProvider({ children }) {
   const [totalBrand, setTotalBrand] = useState(brand.length);
   const [totalSeller, setTotalSeller] = useState(seller.length);
   const [totalCategory, setCategorySeller] = useState(category.length);
-  const [totalFilteredProduct, setTotalFilteredProduct] = useState(filteredProduct.length);
+  const [totalFilteredProduct, setTotalFilteredProduct] = useState(
+    filteredProduct.length
+  );
 
   //useEffect(() => {
   //setThemeMode(mode);
@@ -98,27 +100,19 @@ export function GlobalProvider({ children }) {
     let filtered = [...product];
 
     if (selectedCategory.length > 0) {
-      filtered = filtered.filter(p =>
-        selectedCategory.includes(p.categoryId)
-      );
+      filtered = filtered.filter(p => selectedCategory.includes(p.categoryId));
     }
 
     if (selectedLocation.length > 0) {
-      filtered = filtered.filter(p =>
-        selectedLocation.includes(p.locationId)
-      );
+      filtered = filtered.filter(p => selectedLocation.includes(p.locationId));
     }
 
     if (selectedColor.length > 0) {
-      filtered = filtered.filter(p =>
-        selectedColor.includes(p.colorId)
-      );
+      filtered = filtered.filter(p => selectedColor.includes(p.colorId));
     }
 
     if (selectedGender.length > 0) {
-      filtered = filtered.filter(p =>
-        selectedGender.includes(p.genderId)
-      );
+      filtered = filtered.filter(p => selectedGender.includes(p.genderId));
     }
 
     if (selectedProductName) {
@@ -245,12 +239,16 @@ export function GlobalProvider({ children }) {
         sortOrder,
         setSortOrder,
 
-        totalProduct, setTotalProduct,
-        totalBrand, setTotalBrand,
-        totalSeller, setTotalSeller,
-        totalCategory, setCategorySeller,
-        totalFilteredProduct, setTotalFilteredProduct,
-
+        totalProduct,
+        setTotalProduct,
+        totalBrand,
+        setTotalBrand,
+        totalSeller,
+        setTotalSeller,
+        totalCategory,
+        setCategorySeller,
+        totalFilteredProduct,
+        setTotalFilteredProduct,
       }}
     >
       {children}

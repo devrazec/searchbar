@@ -15,10 +15,7 @@ import FullscreenMapView from './FullscreenMapView';
 import { GlobalContext } from '../context/GlobalContext';
 
 const LeafletMap = () => {
-  const {
-    geoZoomView,
-    geoInitialView,
-  } = useContext(GlobalContext);
+  const { geoZoomView, geoInitialView } = useContext(GlobalContext);
 
   return (
     <MapContainer
@@ -31,9 +28,10 @@ const LeafletMap = () => {
         width: '100%',
       }}
     >
-      <TileLayer 
-      attribution="&copy; Devrazec contribution"
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <TileLayer
+        attribution="&copy; Devrazec contribution"
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
 
       <ResetMapView />
       <ShowMyLocation />
@@ -41,7 +39,6 @@ const LeafletMap = () => {
       <PortugalLayer />
       <LocationLayer />
       <ProductMarker />
-
     </MapContainer>
   );
 };

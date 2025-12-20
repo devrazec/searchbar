@@ -9,12 +9,8 @@ import { Refresh } from 'flowbite-react-icons/outline';
 
 const ResetMapView = () => {
   const map = useMap();
-  const {
-    geoZoomView,
-    setGeoZoomView,
-    geoInitialView,
-    setGeoInitialView,
-  } = useContext(GlobalContext);
+  const { geoZoomView, setGeoZoomView, geoInitialView, setGeoInitialView } =
+    useContext(GlobalContext);
 
   useEffect(() => {
     const zoomControl = document.querySelector('.leaflet-control-zoom');

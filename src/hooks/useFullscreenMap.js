@@ -5,13 +5,7 @@ import L from 'leaflet';
 import { createRoot } from 'react-dom/client';
 import { Expand } from 'flowbite-react-icons/outline';
 
-export function useFullscreenMap(
-  map,
-  {
-    onEnter,
-    onExit,
-  } = {}
-) {
+export function useFullscreenMap(map, { onEnter, onExit } = {}) {
   const buttonRef = useRef(null);
   const rootRef = useRef(null);
 

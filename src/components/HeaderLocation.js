@@ -22,7 +22,8 @@ const HeaderLocation = () => {
     setProduct,
     filteredProduct,
     setFilteredProduct,
-    totalFilteredProduct, setTotalFilteredProduct,
+    totalFilteredProduct,
+    setTotalFilteredProduct,
   } = useContext(GlobalContext);
 
   const countProductsByLocation = (products = []) => {
@@ -39,9 +40,7 @@ const HeaderLocation = () => {
 
   const toggleLocation = value => {
     setSelectedLocation(prev =>
-      prev.includes(value)
-        ? prev.filter(v => v !== value)
-        : [...prev, value]
+      prev.includes(value) ? prev.filter(v => v !== value) : [...prev, value]
     );
   };
 
@@ -75,9 +74,7 @@ const HeaderLocation = () => {
         <div className="md:w-10/12 w-full rounded-lg border border-gray-200 dark:border-gray-600">
           {/* MAP PLACEHOLDER */}
           <div className="h-64 md:h-full w-full rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-
             <LeafletMap />
-
           </div>
         </div>
 
