@@ -197,7 +197,8 @@ export function GlobalProvider({ children }) {
         setSelectedSeller,
         selectedBrand,
         setSelectedBrand,
-        selectedRate, setSelectedRate,
+        selectedRate,
+        setSelectedRate,
 
         geoZoomView,
         setGeoZoomView,

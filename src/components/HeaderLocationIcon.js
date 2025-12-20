@@ -13,12 +13,8 @@ const LeafletMap = dynamic(() => import('./LeafletMap'), {
 });
 
 const HeaderLocationIcon = () => {
-  const {
-    location,
-    selectedLocation,
-    setSelectedLocation,
-    filteredProduct,
-  } = useContext(GlobalContext);
+  const { location, selectedLocation, setSelectedLocation, filteredProduct } =
+    useContext(GlobalContext);
 
   const countProductsByLocation = (products = []) => {
     return products.reduce((acc, p) => {

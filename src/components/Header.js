@@ -73,7 +73,6 @@ import HeaderRate from './HeaderRate';
 import HeaderGender from './HeaderGender';
 import HeaderLocation from './HeaderLocation';
 
-
 const Header = () => {
   const {
     themeMode,
@@ -164,7 +163,6 @@ const Header = () => {
                 </span>
               </div>
             </>
-
           </NavbarBrand>
 
           <div className="relative hidden lg:block">
@@ -232,7 +230,6 @@ const Header = () => {
                         },
                       }}
                     >
-
                       <Tabs.Item active title="Advanced Filters">
                         <div className="space-y-4">
                           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
