@@ -46,6 +46,7 @@ import {
   Lock,
   MailBox,
   MapPin,
+  
   Minus,
   Moon,
   Plus,
@@ -66,8 +67,6 @@ import { FaCog, FaFilter } from 'react-icons/fa';
 import { Icon } from '@iconify-icon/react';
 import HeaderLocation from './HeaderLocation';
 import HeaderBrand from './HeaderBrand';
-
-HeaderBrand;
 
 const Header = () => {
   const {

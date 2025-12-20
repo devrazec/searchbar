@@ -3,8 +3,9 @@
 import React, { useContext, useState, useMemo } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { Checkbox, Dropdown, theme } from 'flowbite-react';
-import { MapPin } from 'flowbite-react-icons/outline';
+import { MapPin, MapPinAlt } from 'flowbite-react-icons/outline';
 import { twMerge } from 'tailwind-merge';
+import LeafletMap from './LeafletMap';
 
 const HeaderLocation = () => {
   const {
@@ -12,8 +13,11 @@ const HeaderLocation = () => {
     setLocation,
     selectedLocation,
     setSelectedLocation,
-    dataProduct,
-    setDataProduct,
+    product,
+    setProduct,
+    filteredProduct,
+    setFilteredProduct,
+    totalFilteredProduct, setTotalFilteredProduct,
   } = useContext(GlobalContext);
 
   const countProductsByLocation = (products = []) => {
@@ -24,15 +28,15 @@ const HeaderLocation = () => {
   };
 
   const locationCounts = useMemo(
-    () => countProductsByLocation(dataProduct || []),
-    [dataProduct]
+    () => countProductsByLocation(filteredProduct || []),
+    [filteredProduct]
   );
-
-  const totalProducts = useMemo(() => dataProduct?.length ?? 0, [dataProduct]);
 
   const toggleLocation = value => {
     setSelectedLocation(prev =>
-      prev.includes(value) ? prev.filter(v => v !== value) : [...prev, value]
+      prev.includes(value)
+        ? prev.filter(v => v !== value)
+        : [...prev, value]
     );
   };
 
@@ -42,7 +46,7 @@ const HeaderLocation = () => {
       inline
       label={
         <span className="inline-flex cursor-pointer justify-center rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-white">
-          <MapPin className="h-5 w-5" />
+          <MapPinAlt className="h-5 w-5" />
         </span>
       }
       theme={{
@@ -66,7 +70,9 @@ const HeaderLocation = () => {
         <div className="md:w-10/12 w-full rounded-lg border border-gray-200 dark:border-gray-600">
           {/* MAP PLACEHOLDER */}
           <div className="h-64 md:h-full w-full rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-            <span className="text-sm text-gray-400"></span>
+
+            <LeafletMap />
+
           </div>
         </div>
 
@@ -78,7 +84,7 @@ const HeaderLocation = () => {
                   <Checkbox
                     id={`location-${loc.value}`}
                     checked={selectedLocation.includes(loc.value)}
-                    disabled={!locationCounts[loc.value]}
+                    //disabled={!locationCounts[loc.value]}
                     onChange={() => toggleLocation(loc.value)}
                   />
 
@@ -109,7 +115,7 @@ const HeaderLocation = () => {
                 Total Products
               </span>
               <span className="w-8 text-right font-semibold text-gray-700 dark:text-gray-300">
-                {totalProducts}
+                {filteredProduct.length}
               </span>
             </li>
           </ul>
