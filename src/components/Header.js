@@ -30,35 +30,8 @@ import {
 } from 'flowbite-react';
 
 import {
-  ArrowRight,
-  ArrowRightToBracket,
-  ArrowsRepeat,
   Bars,
-  Bell,
-  BookOpen,
-  Cart,
-  ChevronDown,
-  Cog,
-  ComputerSpeaker,
-  Dollar,
-  GiftBox,
-  Heart,
-  Lock,
-  MailBox,
-  MapPin,
-  Minus,
-  Moon,
-  Plus,
-  QuestionCircle,
   Search,
-  ShoppingBag,
-  Store,
-  Sun,
-  TrashBin,
-  Truck,
-  User,
-  UserCircle,
-  Wallet,
 } from 'flowbite-react-icons/outline';
 import { twMerge } from 'tailwind-merge';
 import { FaCog, FaFilter } from 'react-icons/fa';
@@ -72,6 +45,9 @@ import HeaderColor from './HeaderColor';
 import HeaderRate from './HeaderRate';
 import HeaderGender from './HeaderGender';
 import HeaderLocation from './HeaderLocation';
+import HeaderPrice from './HeaderPrice';
+import HeaderDelivery from './HeaderDelivery';
+
 
 const Header = () => {
   const {
@@ -189,17 +165,17 @@ const Header = () => {
                   arrowIcon: 'hidden',
                   content: twMerge(
                     theme.dropdown.content,
-                    'w-auto min-w-[24rem] md:min-w-[48rem] max-w-[95vw] rounded-lg p-4 dark:bg-gray-700'
+                    'w-auto min-w-[24rem] md:min-w-[48rem] max-w-[95vw] rounded-lg p-4 dark:bg-gray-800'
                   ),
                   floating: {
                     base: twMerge(
                       theme.dropdown.floating.base,
-                      'w-auto min-w-[24rem] md:min-w-[48rem] max-w-[95vw] rounded-lg dark:divide-gray-700'
+                      'w-auto min-w-[24rem] md:min-w-[48rem] max-w-[95vw] rounded-lg dark:divide-gray-800'
                     ),
                   },
                 }}
               >
-                <div className="mx-0 w-full max-w-full">
+                <div className="mx-0 w-full max-w-full dark:bg-gray-800">
                   <div className="mb-4">
                     <Tabs
                       variant="underline"
@@ -216,7 +192,7 @@ const Header = () => {
                                   on: twMerge(
                                     theme.tabs.tablist.tabitem.variant.underline
                                       .active.on,
-                                    'border-transparent text-blue-600 dark:border-transparent dark:text-blue-500'
+                                    'text-blue-600 dark:text-blue-500'
                                   ),
                                   off: twMerge(
                                     theme.tabs.tablist.tabitem.variant.underline
@@ -232,77 +208,21 @@ const Header = () => {
                     >
                       <Tabs.Item active title="Advanced Filters">
                         <div className="space-y-4">
-                          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                            <div className="grid grid-cols-2 gap-3">
-                              <div>
-                                <Label
-                                  htmlFor="min-price"
-                                  className="block text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  Min Price
-                                </Label>
-                                <RangeSlider
-                                  defaultValue="300"
-                                  id="min-price"
-                                  name="min-price"
-                                  max="7000"
-                                  min="0"
-                                  step="1"
-                                />
-                              </div>
-                              <div>
-                                <Label
-                                  htmlFor="max-price"
-                                  className="block text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  Max Price
-                                </Label>
-                                <RangeSlider
-                                  defaultValue="3500"
-                                  id="max-price"
-                                  name="max-price"
-                                  max="7000"
-                                  min="0"
-                                  step="1"
-                                />
-                              </div>
-                              <div className="col-span-2 flex items-center justify-between space-x-2">
-                                <TextInput
-                                  defaultValue="300"
-                                  id="min-price-input"
-                                  name="min-price-input"
-                                  max="7000"
-                                  min="0"
-                                  required
-                                  type="number"
-                                  className="block w-full"
-                                />
-                                <div className="shrink-0 text-sm font-medium dark:text-gray-300">
-                                  to
-                                </div>
-                                <TextInput
-                                  defaultValue="3500"
-                                  id="max-price-input"
-                                  name="max-price-input"
-                                  max="7000"
-                                  min="0"
-                                  required
-                                  type="number"
-                                  className="block w-full"
-                                />
-                              </div>
-                            </div>
-                            <div className="space-y-3">
-                              <HeaderRate />
-                            </div>
-                          </div>
                           <div className="grid grid-cols-2 gap-3">
                             <HeaderGender />
+                            <HeaderDelivery />
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-3">
+                            <HeaderPrice />
+                            <HeaderRate />
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-3">
                           </div>
                           <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
                             <HeaderCategory />
                             <HeaderColor />
-
                             <HeaderLocation />
                           </div>
                         </div>
@@ -546,7 +466,6 @@ const Header = () => {
           </Dropdown>
 
           <HeaderLocationIcon />
-
           <NavbarToggle
             barIcon={() => (
               <span className="flex items-center gap-2 text-gray-900 dark:text-white">

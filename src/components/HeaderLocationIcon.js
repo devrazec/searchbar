@@ -46,12 +46,12 @@ const HeaderLocationIcon = () => {
       theme={{
         content: twMerge(
           theme.dropdown.content,
-          'my-1 w-[calc(100vw-1rem)] max-w-5xl rounded-lg'
+          'w-[calc(100vw-1rem)] max-w-5xl rounded-lg dark:bg-gray-800 dark:border-gray-800'
         ),
         floating: {
           base: twMerge(
             theme.dropdown.floating.base,
-            'z-10 w-[calc(100vw-1rem)] max-w-5xl divide-y rounded-lg'
+            'z-10 w-[calc(100vw-1rem)] max-w-5xl rounded-lg divide-y dark:border-gray-800'
           ),
         },
         inlineWrapper: twMerge(
@@ -63,7 +63,7 @@ const HeaderLocationIcon = () => {
       <div className="mx-auto flex w-full flex-col md:flex-row items-center md:items-stretch gap-4 p-4 dark:border-gray-600">
         <div className="md:w-10/12 w-full rounded-lg border border-gray-200 dark:border-gray-600">
           {/* MAP PLACEHOLDER */}
-          <div className="h-64 md:h-full w-full rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+          <div className="h-64 md:h-full w-full rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
             <LeafletMap />
           </div>
         </div>

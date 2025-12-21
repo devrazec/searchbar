@@ -82,7 +82,7 @@ function generateProducts(count = 100) {
       value: index + 1,
       label: randomProduct.name,
       stock: Math.floor(Math.random() * 100),
-      price: Number((Math.random() * 100).toFixed(2)),
+      price: Number((Math.random() * 99 + 1).toFixed(2)),
       tax: `${(Math.random() * 20).toFixed(2)} %`,
       status: Math.random() > 0.5 ? 'active' : 'inactive',
       available: Math.random() >= 0.2,

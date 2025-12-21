@@ -108,6 +108,7 @@ npm i -D flowbite-react-icons @iconify-icon/react iconsax-react react-icons flag
 -- Components
 
 npm i -S uuid
+npm i -S primereact
 
 npm remove @mui/material
 

@@ -2,55 +2,67 @@
 
 import React, { useContext, useMemo } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
-import { Checkbox, Label } from 'flowbite-react';
+import { Checkbox, Label, TextInput, RangeSlider } from 'flowbite-react';
 import { HiOutlineX } from 'react-icons/hi';
+import { Slider } from 'primereact/slider';
 
 const HeaderDelivery = () => {
-  const { color, selectedColor, setSelectedColor, filteredProduct } =
+  const { delivery, selectedDelivery, setSelectedDelivery, filteredProduct } =
     useContext(GlobalContext);
 
-  const colorCounts = useMemo(() => {
-    return (filteredProduct || []).reduce((acc, p) => {
-      acc[p.colorId] = (acc[p.colorId] || 0) + 1;
-      return acc;
-    }, {});
-  }, [filteredProduct]);
-
-  const toggleColor = value => {
-    setSelectedColor(prev =>
-      prev.includes(value) ? prev.filter(v => v !== value) : [...prev, value]
-    );
-  };
-
-  const resetColor = () => setSelectedColor([]);
+  const deliveryCounts = useMemo(() => {
+    return (filteredProduct || []).reduce((total, p) => {
+      return (
+        p.delivery >= selectedDelivery[0] &&
+          p.delivery <= selectedDelivery[1]
+          ? total + 1
+          : total
+      );
+    }, 0);
+  }, [filteredProduct, selectedDelivery]);
 
   return (
-    <div>
-      <Label
-        htmlFor="min-delivery-time"
-        className="block text-sm font-medium text-gray-900 dark:text-white"
-      >
-        Max Delivery Time (Days)
-      </Label>
-      <RangeSlider
-        defaultValue="30"
-        id="min-delivery-time"
-        name="min-delivery-time"
-        max="50"
-        min="3"
-        step="1"
-      />
 
-      <TextInput
-        defaultValue="30"
-        id="min-delivery-time-input"
-        name="min-delivery-time-input"
-        max="50"
-        min="3"
-        required
-        type="number"
-      />
+    <div>
+      <h6 className="mb-2 text-sm font-medium text-black dark:text-white">
+        Delivery Time in Days
+      </h6>
+
+      <ul
+        className="flex w-full items-center rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-900
+                         dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+      >
+        <li
+          className="w-full border-r last:border-r-0 border-gray-200 dark:border-gray-600"
+        >
+          <div className="flex items-center pl-3 py-3 cursor-pointer w-full">
+
+            <span class="text-sm text-body start-0 -bottom-6 mr-4">Min {selectedDelivery[0]} </span>
+
+            <Slider
+              value={selectedDelivery}
+              onChange={(e) => {
+                const [min, max] = e.value;
+                setSelectedDelivery([Math.min(min, max), Math.max(min, max)]);
+              }}
+              range
+              min={1}
+              max={30}
+              step={1}
+
+              className="w-36"
+            />
+
+            <span class="text-sm text-body start-0 -bottom-6 ml-4">Max {selectedDelivery[1]} </span>
+
+            <span className="ml-auto mr-6 text-gray-400 text-sm">
+              {deliveryCounts ?? 0}
+            </span>
+          </div>
+        </li>
+      </ul>
     </div>
+
   );
 };
 

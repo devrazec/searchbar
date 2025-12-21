@@ -29,7 +29,7 @@ const HeaderGender = () => {
 
       <ul
         className="flex w-full items-center rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-900
-                     dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                     dark:border-gray-600 dark:bg-gray-800 dark:text-white"
       >
         {gender.map(gen => (
           <li
@@ -49,7 +49,7 @@ const HeaderGender = () => {
 
               <span>{gen.label}</span>
 
-              <span className="ml-auto mr-4 text-gray-400 text-xs">
+              <span className="ml-auto mr-4 text-gray-400 text-sm">
                 {genderCounts[gen.value] ?? 0}
               </span>
             </label>

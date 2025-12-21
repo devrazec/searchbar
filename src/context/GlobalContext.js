@@ -40,6 +40,8 @@ export function GlobalProvider({ children }) {
   const [color, setColor] = useState(dataColorJson);
   const [seller, setSeller] = useState(dataSellerJson);
   const [brand, setBrand] = useState(dataBrandJson);
+  const [delivery, setDelivery] = useState(30);
+  const [productPrice, setProductPrice] = useState(100);
 
   const [sellerGrouped, setSellerGrouped] = useState(dataSellerGroupedJson);
   const [brandGrouped, setBrandGrouped] = useState(dataBrandGroupedJson);
@@ -51,6 +53,8 @@ export function GlobalProvider({ children }) {
   const [selectedSeller, setSelectedSeller] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState([]);
   const [selectedRate, setSelectedRate] = useState([]);
+  const [selectedDelivery, setSelectedDelivery] = useState([1, 100]);
+  const [selectedPrice, setSelectedPrice] = useState([1, 100]);
 
   const [geoZoomView, setGeoZoomView] = useState(6);
   const [geoInitialView, setGeoInitialView] = useState([39.3999, -8.2245]);
@@ -101,30 +105,42 @@ export function GlobalProvider({ children }) {
 
     let filtered = [...product];
 
-    if (selectedCategory.length > 0) {
-      filtered = filtered.filter(p => selectedCategory.includes(p.categoryId));
-    }
-
-    if (selectedLocation.length > 0) {
-      filtered = filtered.filter(p => selectedLocation.includes(p.locationId));
-    }
-
-    if (selectedColor.length > 0) {
-      filtered = filtered.filter(p => selectedColor.includes(p.colorId));
+    if (selectedProductName) {
+      filtered = filtered.filter(p =>
+        p.name.toLowerCase().includes(selectedProductName.toLowerCase())
+      );
     }
 
     if (selectedGender.length > 0) {
       filtered = filtered.filter(p => selectedGender.includes(p.genderId));
     }
 
+    if (selectedPrice[0] > 1 || selectedPrice[1] < 30) {
+      filtered = filtered.filter(
+        p => p.price >= selectedPrice[0] && p.price <= selectedPrice[1]
+      );
+    }
+
+    if (selectedDelivery[0] > 1 || selectedDelivery[1] < 30) {
+      filtered = filtered.filter(
+        p => p.delivery >= selectedDelivery[0] && p.delivery <= selectedDelivery[1]
+      );
+    }
+
     if (selectedRate.length > 0) {
       filtered = filtered.filter(p => selectedRate.includes(p.rateId));
     }
 
-    if (selectedProductName) {
-      filtered = filtered.filter(p =>
-        p.name.toLowerCase().includes(selectedProductName.toLowerCase())
-      );
+    if (selectedCategory.length > 0) {
+      filtered = filtered.filter(p => selectedCategory.includes(p.categoryId));
+    }
+
+    if (selectedColor.length > 0) {
+      filtered = filtered.filter(p => selectedColor.includes(p.colorId));
+    }
+
+    if (selectedLocation.length > 0) {
+      filtered = filtered.filter(p => selectedLocation.includes(p.locationId));
     }
 
     // Sorting
@@ -157,6 +173,8 @@ export function GlobalProvider({ children }) {
     selectedGender,
     selectedProductName,
     selectedRate,
+    selectedPrice,
+    selectedDelivery,
     sortField,
     sortOrder,
   ]);
@@ -180,6 +198,8 @@ export function GlobalProvider({ children }) {
         setSeller,
         brand,
         setBrand,
+        delivery, setDelivery,
+        productPrice, setProductPrice,
         sellerGrouped,
         setSellerGrouped,
         brandGrouped,
@@ -199,7 +219,8 @@ export function GlobalProvider({ children }) {
         setSelectedBrand,
         selectedRate,
         setSelectedRate,
-
+        selectedPrice, setSelectedPrice,
+        selectedDelivery, setSelectedDelivery,
         geoZoomView,
         setGeoZoomView,
         geoInitialView,

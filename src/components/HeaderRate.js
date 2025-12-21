@@ -54,7 +54,7 @@ const HeaderRate = () => {
         </button>
       </div>
 
-      <ul className="space-y-2 mt-1">
+      <ul className="space-y-2 p-3 mt-1 rounded-lg border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-800">
         {rates.map(rate => (
           <li key={rate} className="flex items-center justify-between">
             <div className="flex items-center">
