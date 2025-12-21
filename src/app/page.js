@@ -9,15 +9,10 @@ import Header7 from '../components/samples/Header7';
 import Header8 from '../components/samples/Header8';
 import Header9 from '../components/samples/Header9';
 
-
 export default function Home() {
   return (
     <>
       <Header />
-
-     
-
-
     </>
   );
 }

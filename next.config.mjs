@@ -1,5 +1,3 @@
-import withFlowbiteReact from 'flowbite-react/plugin/nextjs';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
@@ -10,4 +8,4 @@ const nextConfig = {
   reactStrictMode: false,
 };
 
-export default withFlowbiteReact(nextConfig);
+export default nextConfig;

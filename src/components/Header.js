@@ -29,10 +29,7 @@ import {
   RangeSlider,
 } from 'flowbite-react';
 
-import {
-  Bars,
-  Search,
-} from 'flowbite-react-icons/outline';
+import { Bars, Search } from 'flowbite-react-icons/outline';
 import { twMerge } from 'tailwind-merge';
 import { FaCog, FaFilter } from 'react-icons/fa';
 
@@ -209,8 +206,8 @@ const Header = () => {
                       <Tabs.Item active title="Advanced Filters">
                         <div className="space-y-4">
                           <div className="grid grid-cols-2 gap-3">
-                              <HeaderGender />
-                              <HeaderDelivery />
+                            <HeaderGender />
+                            <HeaderDelivery />
                           </div>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="grid grid-cols-1 gap-3">
@@ -219,8 +216,7 @@ const Header = () => {
                             </div>
                             <HeaderRate />
                           </div>
-                          <div className="grid grid-cols-2 gap-3">
-                          </div>
+                          <div className="grid grid-cols-2 gap-3"></div>
                           <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
                             <HeaderCategory />
                             <HeaderColor />

@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@import 'flowbite-react/plugin/tailwindcss';
 @source "../../.flowbite-react/class-list.json";
 @import 'primereact/resources/themes/lara-light-blue/theme.css';
 @import 'primereact/resources/primereact.min.css';

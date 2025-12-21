@@ -97,7 +97,7 @@ gh-pages/_next/.nojekyll
 
 npm i -D typescript
 npm i -S flowbite
-npm i -S flowbite-react
+npm i -S flowbite-react@0.12.9
 npm i -S tailwind-merge lucide-react tw-animate-css
 npm i -D flowbite-typography
 

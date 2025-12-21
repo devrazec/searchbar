@@ -50,7 +50,6 @@ export function GlobalProvider({ children }) {
   const [dateStart, setDateStart] = useState(null);
   const [dateEnd, setDateEnd] = useState(null);
 
-
   const [sellerGrouped, setSellerGrouped] = useState(dataSellerGroupedJson);
   const [brandGrouped, setBrandGrouped] = useState(dataBrandGroupedJson);
 
@@ -105,7 +104,7 @@ export function GlobalProvider({ children }) {
   //const [product, setProduct] = useState(dataProductJson.slice(0, 200));
   //const [filteredProduct, setFilteredProduct] = useState([]);
 
-  const parseISODate = (iso) => {
+  const parseISODate = iso => {
     const [y, m, d] = iso.split('-').map(Number);
     return new Date(y, m - 1, d);
   };
@@ -136,7 +135,8 @@ export function GlobalProvider({ children }) {
 
     if (selectedDelivery[0] > 1 || selectedDelivery[1] < 30) {
       filtered = filtered.filter(
-        p => p.delivery >= selectedDelivery[0] && p.delivery <= selectedDelivery[1]
+        p =>
+          p.delivery >= selectedDelivery[0] && p.delivery <= selectedDelivery[1]
       );
     }
 
@@ -223,11 +223,16 @@ export function GlobalProvider({ children }) {
         setSeller,
         brand,
         setBrand,
-        delivery, setDelivery,
-        productPrice, setProductPrice,
-        dateRange, setDateRange,
-        dateStart, setDateStart,
-        dateEnd, setDateEnd,
+        delivery,
+        setDelivery,
+        productPrice,
+        setProductPrice,
+        dateRange,
+        setDateRange,
+        dateStart,
+        setDateStart,
+        dateEnd,
+        setDateEnd,
         sellerGrouped,
         setSellerGrouped,
         brandGrouped,
@@ -247,8 +252,10 @@ export function GlobalProvider({ children }) {
         setSelectedBrand,
         selectedRate,
         setSelectedRate,
-        selectedPrice, setSelectedPrice,
-        selectedDelivery, setSelectedDelivery,
+        selectedPrice,
+        setSelectedPrice,
+        selectedDelivery,
+        setSelectedDelivery,
         geoZoomView,
         setGeoZoomView,
         geoInitialView,

@@ -2,7 +2,6 @@ import './globals.css';
 import { GlobalProvider } from '../context/GlobalContext';
 import { ThemeModeScript } from 'flowbite-react';
 import { twMerge } from 'tailwind-merge';
-import { ThemeInit } from '../../.flowbite-react/init';
 
 export const metadata = {
   title: 'Universal SearchBar',
@@ -18,10 +17,7 @@ export default function RootLayout({ children }) {
         <ThemeModeScript />
       </head>
       <body className={twMerge('bg-primary-50 dark:bg-gray-900')}>
-        <GlobalProvider>
-          <ThemeInit />
-          {children}
-        </GlobalProvider>
+        <GlobalProvider>{children}</GlobalProvider>
       </body>
     </html>
   );
