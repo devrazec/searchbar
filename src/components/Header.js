@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { GlobalContext } from '../context/GlobalContext';
@@ -49,32 +49,35 @@ import HeaderDate from './HeaderDate';
 const Header = () => {
   const {
     themeMode,
-    setThemeMode,
-    dataProduct,
-    setDataProduct,
-    category,
-    setCategory,
-    location,
-    setLocation,
-    gender,
-    setGender,
-    selectedCategory,
-    setSelectedCategory,
-    selectedLocation,
-    setSelectedLocation,
-    selectedGender,
     setSelectedGender,
+    setSelectedDelivery,
+    setSelectedPrice,
     setSelectedRate,
+    setDateStart,
+    setDateEnd,
+    setDateResetKey,
+    setSelectedCategory,
     setSelectedColor,
+    setSelectedLocation,
+    filteredProduct,
   } = useContext(GlobalContext);
 
   const resetAll = () => {
-    setSelectedRate([]);
-    setSelectedColor([]);
     setSelectedGender([]);
+    setSelectedDelivery([1, 30]);
+    setSelectedPrice([1, 100]);
+    setSelectedRate([]);
+    setDateStart(null);
+    setDateEnd(null);
+    setDateResetKey((k) => k + 1);
     setSelectedCategory([]);
+    setSelectedColor([]);
     setSelectedLocation([]);
   };
+
+  const totalProduct = useMemo(() => {
+    return filteredProduct?.length ?? 0;
+  }, [filteredProduct]);
 
   return (
     <>
@@ -232,11 +235,20 @@ const Header = () => {
                       </Tabs.Item>
                     </Tabs>
                   </div>
-                  <div className="mt-5 flex items-center space-x-4 rounded-b dark:border-gray-600">
-                    <Button type="submit">Show 50 results</Button>
+                  <div className="mt-5 flex items-center justify-between space-x-4 rounded-b dark:border-gray-600">
                     <Button color="gray" type="reset" onClick={resetAll}>
                       Reset All
                     </Button>
+
+                    <div className="mt-2 flex items-center justify-between border-t pt-2">
+                      <span className="font-medium text-gray-900 dark:text-gray-100">
+                        Total Products
+                      </span>
+                      <span className="w-8 text-right ml-2 font-semibold text-gray-700 dark:text-gray-300">
+                        {totalProduct}
+                      </span>
+                    </div>
+
                   </div>
                 </div>
               </Dropdown>

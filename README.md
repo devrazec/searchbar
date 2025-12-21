@@ -96,8 +96,7 @@ gh-pages/_next/.nojekyll
 -- Install Flowbite
 
 npm i -D typescript
-npm i -S flowbite
-npm i -S flowbite-react@0.12.9
+npm i -S flowbite-react
 npm i -S tailwind-merge lucide-react tw-animate-css
 npm i -D flowbite-typography
 
@@ -154,3 +153,4 @@ https://github.com/devrazec/searchbar/tree/gh-pages
 
 https://www.convertcsv.com/csv-to-json.htm
 https://flowbite.com/icons/
+https://flowbite-react.com/docs/components

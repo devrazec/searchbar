@@ -63,6 +63,17 @@ function getColor(id) {
   return colors?.[id] ?? {};
 }
 
+function randomDate(start, end) {
+  const date = new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+
+  return date.toLocaleDateString('en-GB'); // dd/MM/yyyy
+}
+
+const start = new Date(2025, 0, 1);  // 01/01/2025
+const end   = new Date(2025, 11, 31); // 31/12/2025
+
 // 3️⃣ Generate N products
 function generateProducts(count = 100) {
   return Array.from({ length: count }, (_, index) => {
@@ -87,7 +98,7 @@ function generateProducts(count = 100) {
       status: Math.random() > 0.5 ? 'active' : 'inactive',
       available: Math.random() >= 0.2,
       featured: Math.random() >= 0.1,
-      date: new Date().toISOString().slice(0, 10),
+      date: randomDate(start, end),
       rateId: Math.floor(Math.random() * 5) + 1,
       delivery: Math.floor(Math.random() * 30) + 1,
 

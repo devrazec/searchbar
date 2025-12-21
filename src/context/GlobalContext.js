@@ -42,13 +42,10 @@ export function GlobalProvider({ children }) {
   const [brand, setBrand] = useState(dataBrandJson);
   const [delivery, setDelivery] = useState(30);
   const [productPrice, setProductPrice] = useState(100);
-  const [dateRange, setDateRange] = useState({
-    start: null,
-    end: null,
-  });
 
   const [dateStart, setDateStart] = useState(null);
   const [dateEnd, setDateEnd] = useState(null);
+  const [dateResetKey, setDateResetKey] = useState(0);
 
   const [sellerGrouped, setSellerGrouped] = useState(dataSellerGroupedJson);
   const [brandGrouped, setBrandGrouped] = useState(dataBrandGroupedJson);
@@ -104,9 +101,12 @@ export function GlobalProvider({ children }) {
   //const [product, setProduct] = useState(dataProductJson.slice(0, 200));
   //const [filteredProduct, setFilteredProduct] = useState([]);
 
-  const parseISODate = iso => {
-    const [y, m, d] = iso.split('-').map(Number);
-    return new Date(y, m - 1, d);
+  const normalizeDate = (d) =>
+    new Date(d.getFullYear(), d.getMonth(), d.getDate());
+
+  const parseDMYDate = (dmy) => {
+    const [dd, mm, yyyy] = dmy.split('/').map(Number);
+    return new Date(yyyy, mm - 1, dd);
   };
 
   useEffect(() => {
@@ -140,12 +140,14 @@ export function GlobalProvider({ children }) {
       );
     }
 
-    if (dateRange.start || dateRange.end) {
-      filtered = filtered.filter(p => {
-        const productDate = parseISODate(p.date);
+    if (dateStart && dateEnd) {
+      filtered = filtered.filter((p) => {
+        const productDate = normalizeDate(parseDMYDate(p.date));
+        const startDate = dateStart ? normalizeDate(dateStart) : null;
+        const endDate = dateEnd ? normalizeDate(dateEnd) : null;
 
-        if (dateRange.start && productDate <= dateRange.start) return false;
-        if (dateRange.end && productDate >= dateRange.end) return false;
+        if (startDate && productDate < startDate) return false;
+        if (endDate && productDate > endDate) return false;
 
         return true;
       });
@@ -199,7 +201,8 @@ export function GlobalProvider({ children }) {
     selectedRate,
     selectedPrice,
     selectedDelivery,
-    //dateRange,
+    dateStart,
+    dateEnd,
     sortField,
     sortOrder,
   ]);
@@ -227,12 +230,11 @@ export function GlobalProvider({ children }) {
         setDelivery,
         productPrice,
         setProductPrice,
-        dateRange,
-        setDateRange,
         dateStart,
         setDateStart,
         dateEnd,
         setDateEnd,
+        dateResetKey, setDateResetKey,
         sellerGrouped,
         setSellerGrouped,
         brandGrouped,

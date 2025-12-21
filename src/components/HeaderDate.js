@@ -6,13 +6,12 @@ import { Datepicker } from 'flowbite-react';
 
 const HeaderDate = () => {
   const {
-    dateRange,
-    setDateRange,
     dateStart,
     setDateStart,
     dateEnd,
     setDateEnd,
     filteredProduct,
+    dateResetKey,
   } = useContext(GlobalContext);
 
   const dateTotal = useMemo(() => {
@@ -32,16 +31,12 @@ const HeaderDate = () => {
         <li className="w-36">
           <div className="pl-3 py-3">
             <Datepicker
-              defaultDate={dateStart}
-              onChange={date => setDateStart(date)}
-              dateFormat="dd/mm/yyyy"
-              inputDateFormatProp={{
-                day: 'numeric',
-                month: 'numeric',
-                year: 'numeric',
-              }}
+            key={`start-${dateResetKey}`}
+              onChange={date => setDateStart(date ?? null)}
+              language="en-GB"
               placeholder="Start date"
               value={dateStart}
+              showClearButton={false}
             />
           </div>
         </li>
@@ -49,16 +44,13 @@ const HeaderDate = () => {
         <li className="w-36">
           <div className="pl-3 py-3">
             <Datepicker
-              defaultDate={dateEnd}
-              onChange={date => setDateEnd(date)}
-              dateFormat="dd/mm/yyyy"
-              inputDateFormatProp={{
-                day: 'numeric',
-                month: 'numeric',
-                year: 'numeric',
-              }}
+            key={`start-${dateResetKey}`}
+              language="en-GB"
+              onChange={date => setDateEnd(date ?? null)}
               placeholder="End date"
               value={dateEnd}
+              minDate={dateStart}
+              showClearButton={false}
             />
           </div>
         </li>
