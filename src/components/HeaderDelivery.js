@@ -37,7 +37,7 @@ const HeaderDelivery = () => {
         >
           <div className="flex items-center pl-3 py-3 cursor-pointer w-full">
 
-            <span class="text-sm text-body start-0 -bottom-6 mr-4">Min {selectedDelivery[0]} </span>
+            <span className="text-sm text-body start-0 -bottom-6 mr-4 w-22">Min {selectedDelivery[0]} </span>
 
             <Slider
               value={selectedDelivery}
@@ -50,12 +50,12 @@ const HeaderDelivery = () => {
               max={30}
               step={1}
 
-              className="w-36"
+              className="w-22"
             />
 
-            <span class="text-sm text-body start-0 -bottom-6 ml-4">Max {selectedDelivery[1]} </span>
+            <span className="text-sm text-body start-0 -bottom-6 ml-4 w-22">Max {selectedDelivery[1]} </span>
 
-            <span className="ml-auto mr-6 text-gray-400 text-sm">
+            <span className="ml-auto mr-4 text-gray-400 text-sm">
               {deliveryCounts ?? 0}
             </span>
           </div>

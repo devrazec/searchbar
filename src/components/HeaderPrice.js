@@ -39,7 +39,7 @@ const HeaderPrice = () => {
                 >
                     <div className="flex items-center pl-3 py-3 cursor-pointer w-full">
 
-                        <span class="text-sm text-body start-0 -bottom-6 mr-4">Min €{selectedPrice[0].toFixed(2)} </span>
+                        <span className="text-sm text-body start-0 -bottom-6 mr-4 w-22">Min €{selectedPrice[0].toFixed(2)} </span>
 
                         <Slider
                             value={selectedPrice}
@@ -48,13 +48,13 @@ const HeaderPrice = () => {
                                 setSelectedPrice([Math.min(min, max), Math.max(min, max)]);
                             }}
                             range
-                            min={0}
-                            max={500}
+                            min={1}
+                            max={100}
                             step={0.01}
-                            className="w-26"
+                            className="w-22"
                         />
 
-                        <span class="text-sm text-body start-0 -bottom-6 ml-4">Max €{selectedPrice[1].toFixed(2)} </span>
+                        <span className="text-sm text-body start-0 -bottom-6 ml-4 w-22">Max €{selectedPrice[1].toFixed(2)} </span>
 
                         <span className="ml-auto mr-4 text-gray-400 text-sm">
                             {priceCounts ?? 0}

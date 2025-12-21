@@ -33,7 +33,7 @@ const HeaderRate = () => {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h6 className="text-sm font-medium text-black dark:text-white">
+        <h6 className="text-sm mb-2 font-medium text-black dark:text-white">
           Rating
         </h6>
 
@@ -47,14 +47,14 @@ const HeaderRate = () => {
                         rounded p-1
                         text-gray-400 hover:text-gray-700
                         dark:text-gray-500 dark:hover:text-gray-200
-                        disabled:opacity-40 disabled:cursor-not-allowed mr-4
+                        disabled:opacity-40 disabled:cursor-not-allowed mr-8
                       "
         >
           <HiOutlineX className="h-4 w-4" />
         </button>
       </div>
 
-      <ul className="space-y-2 p-3 mt-1 rounded-lg border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-800">
+      <ul className="space-y-2 p-3 rounded-lg border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-800">
         {rates.map(rate => (
           <li key={rate} className="flex items-center justify-between">
             <div className="flex items-center">

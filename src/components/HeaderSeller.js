@@ -154,8 +154,6 @@ const HeaderSeller = () => {
           <input
             id="brother"
             type="checkbox"
-            value=""
-            checked
             className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
           />
           <Label
@@ -355,8 +353,6 @@ const HeaderSeller = () => {
           <input
             id="emi"
             type="checkbox"
-            value=""
-            checked
             className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
           />
           <Label

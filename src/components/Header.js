@@ -47,7 +47,7 @@ import HeaderGender from './HeaderGender';
 import HeaderLocation from './HeaderLocation';
 import HeaderPrice from './HeaderPrice';
 import HeaderDelivery from './HeaderDelivery';
-
+import HeaderDate from './HeaderDate';
 
 const Header = () => {
   const {
@@ -209,15 +209,16 @@ const Header = () => {
                       <Tabs.Item active title="Advanced Filters">
                         <div className="space-y-4">
                           <div className="grid grid-cols-2 gap-3">
-                            <HeaderGender />
-                            <HeaderDelivery />
+                              <HeaderGender />
+                              <HeaderDelivery />
                           </div>
-
                           <div className="grid grid-cols-2 gap-3">
-                            <HeaderPrice />
+                            <div className="grid grid-cols-1 gap-3">
+                              <HeaderPrice />
+                              <HeaderDate />
+                            </div>
                             <HeaderRate />
                           </div>
-
                           <div className="grid grid-cols-2 gap-3">
                           </div>
                           <div className="grid grid-cols-2 gap-4 md:grid-cols-3">

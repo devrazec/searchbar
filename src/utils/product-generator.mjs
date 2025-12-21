@@ -87,7 +87,7 @@ function generateProducts(count = 100) {
       status: Math.random() > 0.5 ? 'active' : 'inactive',
       available: Math.random() >= 0.2,
       featured: Math.random() >= 0.1,
-      date: new Date().toLocaleDateString('pt-PT'),
+      date: new Date().toISOString().slice(0, 10),
       rateId: Math.floor(Math.random() * 5) + 1,
       delivery: Math.floor(Math.random() * 30) + 1,
 

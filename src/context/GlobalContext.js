@@ -42,6 +42,14 @@ export function GlobalProvider({ children }) {
   const [brand, setBrand] = useState(dataBrandJson);
   const [delivery, setDelivery] = useState(30);
   const [productPrice, setProductPrice] = useState(100);
+  const [dateRange, setDateRange] = useState({
+    start: null,
+    end: null,
+  });
+
+  const [dateStart, setDateStart] = useState(null);
+  const [dateEnd, setDateEnd] = useState(null);
+
 
   const [sellerGrouped, setSellerGrouped] = useState(dataSellerGroupedJson);
   const [brandGrouped, setBrandGrouped] = useState(dataBrandGroupedJson);
@@ -53,7 +61,7 @@ export function GlobalProvider({ children }) {
   const [selectedSeller, setSelectedSeller] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState([]);
   const [selectedRate, setSelectedRate] = useState([]);
-  const [selectedDelivery, setSelectedDelivery] = useState([1, 100]);
+  const [selectedDelivery, setSelectedDelivery] = useState([1, 30]);
   const [selectedPrice, setSelectedPrice] = useState([1, 100]);
 
   const [geoZoomView, setGeoZoomView] = useState(6);
@@ -97,6 +105,11 @@ export function GlobalProvider({ children }) {
   //const [product, setProduct] = useState(dataProductJson.slice(0, 200));
   //const [filteredProduct, setFilteredProduct] = useState([]);
 
+  const parseISODate = (iso) => {
+    const [y, m, d] = iso.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  };
+
   useEffect(() => {
     if (!product) {
       setFilteredProduct([]);
@@ -115,7 +128,7 @@ export function GlobalProvider({ children }) {
       filtered = filtered.filter(p => selectedGender.includes(p.genderId));
     }
 
-    if (selectedPrice[0] > 1 || selectedPrice[1] < 30) {
+    if (selectedPrice[0] > 1 || selectedPrice[1] < 100) {
       filtered = filtered.filter(
         p => p.price >= selectedPrice[0] && p.price <= selectedPrice[1]
       );
@@ -125,6 +138,17 @@ export function GlobalProvider({ children }) {
       filtered = filtered.filter(
         p => p.delivery >= selectedDelivery[0] && p.delivery <= selectedDelivery[1]
       );
+    }
+
+    if (dateRange.start || dateRange.end) {
+      filtered = filtered.filter(p => {
+        const productDate = parseISODate(p.date);
+
+        if (dateRange.start && productDate <= dateRange.start) return false;
+        if (dateRange.end && productDate >= dateRange.end) return false;
+
+        return true;
+      });
     }
 
     if (selectedRate.length > 0) {
@@ -175,6 +199,7 @@ export function GlobalProvider({ children }) {
     selectedRate,
     selectedPrice,
     selectedDelivery,
+    //dateRange,
     sortField,
     sortOrder,
   ]);
@@ -200,6 +225,9 @@ export function GlobalProvider({ children }) {
         setBrand,
         delivery, setDelivery,
         productPrice, setProductPrice,
+        dateRange, setDateRange,
+        dateStart, setDateStart,
+        dateEnd, setDateEnd,
         sellerGrouped,
         setSellerGrouped,
         brandGrouped,
