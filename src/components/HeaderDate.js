@@ -31,7 +31,7 @@ const HeaderDate = () => {
         <li className="w-36">
           <div className="pl-3 py-3">
             <Datepicker
-            key={`start-${dateResetKey}`}
+              key={`start-${dateResetKey}`}
               onChange={date => setDateStart(date ?? null)}
               language="en-GB"
               placeholder="Start date"
@@ -44,7 +44,7 @@ const HeaderDate = () => {
         <li className="w-36">
           <div className="pl-3 py-3">
             <Datepicker
-            key={`start-${dateResetKey}`}
+              key={`start-${dateResetKey}`}
               language="en-GB"
               onChange={date => setDateEnd(date ?? null)}
               placeholder="End date"

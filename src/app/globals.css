@@ -44,6 +44,6 @@ li:hover {
   background-color: rgba(0, 0, 0, 0.03);
 }
 
-.flowbite-datepicker button[aria-label="Clear date"] {
+.flowbite-datepicker button[aria-label='Clear date'] {
   display: none;
 }

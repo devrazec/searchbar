@@ -101,10 +101,10 @@ export function GlobalProvider({ children }) {
   //const [product, setProduct] = useState(dataProductJson.slice(0, 200));
   //const [filteredProduct, setFilteredProduct] = useState([]);
 
-  const normalizeDate = (d) =>
+  const normalizeDate = d =>
     new Date(d.getFullYear(), d.getMonth(), d.getDate());
 
-  const parseDMYDate = (dmy) => {
+  const parseDMYDate = dmy => {
     const [dd, mm, yyyy] = dmy.split('/').map(Number);
     return new Date(yyyy, mm - 1, dd);
   };
@@ -141,7 +141,7 @@ export function GlobalProvider({ children }) {
     }
 
     if (dateStart && dateEnd) {
-      filtered = filtered.filter((p) => {
+      filtered = filtered.filter(p => {
         const productDate = normalizeDate(parseDMYDate(p.date));
         const startDate = dateStart ? normalizeDate(dateStart) : null;
         const endDate = dateEnd ? normalizeDate(dateEnd) : null;
@@ -234,7 +234,8 @@ export function GlobalProvider({ children }) {
         setDateStart,
         dateEnd,
         setDateEnd,
-        dateResetKey, setDateResetKey,
+        dateResetKey,
+        setDateResetKey,
         sellerGrouped,
         setSellerGrouped,
         brandGrouped,

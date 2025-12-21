@@ -71,8 +71,8 @@ function randomDate(start, end) {
   return date.toLocaleDateString('en-GB'); // dd/MM/yyyy
 }
 
-const start = new Date(2025, 0, 1);  // 01/01/2025
-const end   = new Date(2025, 11, 31); // 31/12/2025
+const start = new Date(2025, 0, 1); // 01/01/2025
+const end = new Date(2025, 11, 31); // 31/12/2025
 
 // 3️⃣ Generate N products
 function generateProducts(count = 100) {

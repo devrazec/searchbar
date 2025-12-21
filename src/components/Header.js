@@ -69,7 +69,7 @@ const Header = () => {
     setSelectedRate([]);
     setDateStart(null);
     setDateEnd(null);
-    setDateResetKey((k) => k + 1);
+    setDateResetKey(k => k + 1);
     setSelectedCategory([]);
     setSelectedColor([]);
     setSelectedLocation([]);
@@ -248,7 +248,6 @@ const Header = () => {
                         {totalProduct}
                       </span>
                     </div>
-
                   </div>
                 </div>
               </Dropdown>
