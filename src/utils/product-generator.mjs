@@ -74,6 +74,44 @@ function randomDate(start, end) {
 const start = new Date(2025, 0, 1); // 01/01/2025
 const end = new Date(2025, 11, 31); // 31/12/2025
 
+function getAgeSize(age) {
+  const ageToEuSize = {
+    1: 80,
+    2: 92,
+    3: 98,
+    4: 104,
+    5: 110,
+    6: 116,
+    7: 122,
+    8: 128,
+    9: 134,
+    10: 140,
+    11: 146,
+    12: 152
+  };
+
+  const euSize = ageToEuSize[age] ?? null;
+
+  let sizeId = null;
+  let sizeName = null;
+
+  if (euSize !== null) {
+    if (euSize <= 104) sizeId = 1, sizeName = "XXS";
+    else if (euSize <= 116) sizeId = 2, sizeName = "XS";
+    else if (euSize <= 128) sizeId = 3, sizeName = "S";
+    else if (euSize <= 140) sizeId = 4, sizeName = "M";
+    else if (euSize <= 152) sizeId = 5, sizeName = "L";
+    else sizeId = 6, sizeName = "XL";
+  }
+
+  return {
+    age,
+    euSize,
+    sizeId,
+    sizeName,
+  };
+}
+
 // 3️⃣ Generate N products
 function generateProducts(count = 100) {
   return Array.from({ length: count }, (_, index) => {
@@ -88,6 +126,9 @@ function generateProducts(count = 100) {
     const color = getColor(randomProduct.colorId);
     const gender = getGender(randomProduct.genderId);
 
+    const randomAge = Math.floor(Math.random() * 12) + 1;
+    const randomAgeSize = getAgeSize(randomAge);
+
     return {
       uuid: uuidv4(),
       value: index + 1,
@@ -99,8 +140,12 @@ function generateProducts(count = 100) {
       available: Math.random() >= 0.2,
       featured: Math.random() >= 0.1,
       date: randomDate(start, end),
-      rateId: Math.floor(Math.random() * 5) + 1,
+      rateId: Math.floor(Math.random() * 6),
       delivery: Math.floor(Math.random() * 30) + 1,
+      age: randomAgeSize.age,
+      euSize: randomAgeSize.euSize,
+      sizeId: randomAgeSize.sizeId,
+      sizeName: randomAgeSize.sizeName,
 
       image: randomProduct.image,
       mongodbImage: getMongodbImageId(randomProduct.image),

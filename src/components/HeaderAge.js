@@ -6,23 +6,23 @@ import { Checkbox, Label, TextInput, RangeSlider } from 'flowbite-react';
 import { HiOutlineX } from 'react-icons/hi';
 import { Slider } from 'primereact/slider';
 
-const HeaderDelivery = () => {
-  const { delivery, selectedDelivery, setSelectedDelivery, filteredProduct } =
+const HeaderAge = () => {
+  const { age, selectedAge, setSelectedAge, filteredProduct } =
     useContext(GlobalContext);
 
-  const deliveryCounts = useMemo(() => {
+  const ageCounts = useMemo(() => {
     return (filteredProduct || []).reduce((total, p) => {
-      return p.delivery >= selectedDelivery[0] &&
-        p.delivery <= selectedDelivery[1]
+      return p.age >= selectedAge[0] &&
+        p.age <= selectedAge[1]
         ? total + 1
         : total;
     }, 0);
-  }, [filteredProduct, selectedDelivery]);
+  }, [filteredProduct, selectedAge]);
 
   return (
     <div>
       <h6 className="mb-2 text-sm font-medium text-black dark:text-white">
-        Delivery Time in Days
+        Age in years
       </h6>
 
       <ul
@@ -33,20 +33,20 @@ const HeaderDelivery = () => {
           <div className="flex items-center w-full px-3 py-3">
             {/* Min span */}
             <span className="w-16 text-sm text-body text-left">
-              Min {selectedDelivery[0]}
+              Min {selectedAge[0]}
             </span>
 
             {/* Slider */}
             <div className="flex-1 px-2">
               <Slider
-                value={selectedDelivery}
+                value={selectedAge}
                 onChange={e => {
                   const [min, max] = e.value;
-                  setSelectedDelivery([Math.min(min, max), Math.max(min, max)]);
+                  setSelectedAge([Math.min(min, max), Math.max(min, max)]);
                 }}
                 range
                 min={1}
-                max={30}
+                max={12}
                 step={1}
                 className="w-full"
               />
@@ -54,12 +54,12 @@ const HeaderDelivery = () => {
 
             {/* Max span */}
             <span className="w-20 text-sm text-body text-right">
-              Max {selectedDelivery[1]}
+              Max {selectedAge[1]}
             </span>
 
-            {/* Delivery count */}
+            {/* Age count */}
             <span className="ml-4 text-gray-400 text-sm">
-              {deliveryCounts ?? 0}
+              {ageCounts ?? 0}
             </span>
           </div>
         </li>
@@ -68,4 +68,4 @@ const HeaderDelivery = () => {
   );
 };
 
-export default React.memo(HeaderDelivery);
+export default React.memo(HeaderAge);

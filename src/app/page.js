@@ -8,11 +8,14 @@ import Header6 from '../components/samples/Header6';
 import Header7 from '../components/samples/Header7';
 import Header8 from '../components/samples/Header8';
 import Header9 from '../components/samples/Header9';
+import DrawerEdge from '../components/DrawerEdge';
+
 
 export default function Home() {
   return (
     <>
       <Header />
+      <DrawerEdge />
     </>
   );
 }

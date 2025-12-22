@@ -1,38 +1,20 @@
 'use client';
 
-import React, { useContext, useState, useMemo } from 'react';
+import React, { useContext, useMemo, useState, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
-import { Checkbox, Dropdown, theme, Label } from 'flowbite-react';
-import { MapPin } from 'flowbite-react-icons/outline';
-import { twMerge } from 'tailwind-merge';
+import { Checkbox, Label, TextInput } from 'flowbite-react';
 
 const HeaderBrand = () => {
-  const {
-    location,
-    setLocation,
-    selectedLocation,
-    setSelectedLocation,
-    dataProduct,
-    setDataProduct,
-    brand,
-    setBrand,
-    selectedBrand,
-    setSelectedBrand,
-  } = useContext(GlobalContext);
+  const { selectedBrand, setSelectedBrand, brandGrouped, filteredProduct } =
+    useContext(GlobalContext);
 
-  const countProductsByBrand = (products = []) => {
-    return products.reduce((acc, p) => {
-      acc[p.brandId] = (acc[p.brandId] || 0) + 1;
-      return acc;
-    }, {});
-  };
+  const [letterPage, setLetterPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [onlyWithProducts, setOnlyWithProducts] = useState(false);
 
-  const brandCounts = useMemo(
-    () => countProductsByBrand(dataProduct || []),
-    [dataProduct]
-  );
-
-  const totalProducts = useMemo(() => dataProduct?.length ?? 0, [dataProduct]);
+  const lettersPerColumn = 3;
+  const columns = 3;
+  const lettersPerPage = lettersPerColumn * columns;
 
   const toggleBrand = value => {
     setSelectedBrand(prev =>
@@ -40,379 +22,144 @@ const HeaderBrand = () => {
     );
   };
 
+  // Count products per brand
+  const brandCounts = useMemo(() => {
+    return (filteredProduct || []).reduce((acc, p) => {
+      acc[p.brandId] = (acc[p.brandId] || 0) + 1;
+      return acc;
+    }, {});
+  }, [filteredProduct]);
+
+  // Filter brands per letter based on search and checkbox
+  const filteredGroupedBrands = useMemo(() => {
+    const filtered = {};
+    Object.entries(brandGrouped).forEach(([letter, brands]) => {
+      let filteredBrands = brands;
+
+      if (searchTerm) {
+        const term = searchTerm.toLowerCase();
+        filteredBrands = filteredBrands.filter(brand =>
+          brand.label.toLowerCase().includes(term)
+        );
+      }
+
+      if (onlyWithProducts) {
+        filteredBrands = filteredBrands.filter(
+          brand => (brandCounts[brand.value] || 0) > 0
+        );
+      }
+
+      if (filteredBrands.length > 0) {
+        filtered[letter] = filteredBrands;
+      }
+    });
+    return filtered;
+  }, [brandGrouped, searchTerm, onlyWithProducts, brandCounts]);
+
+  const sortedLetters = Object.keys(filteredGroupedBrands).sort();
+  const totalLetterPages = Math.ceil(sortedLetters.length / lettersPerPage);
+
+  // Reset page if out of bounds
+  useEffect(() => {
+    if (letterPage > totalLetterPages && totalLetterPages > 0) {
+      setLetterPage(totalLetterPages);
+    } else if (totalLetterPages === 0) {
+      setLetterPage(1);
+    }
+  }, [letterPage, totalLetterPages]);
+
+  const displayedLetters = sortedLetters.slice(
+    (letterPage - 1) * lettersPerPage,
+    letterPage * lettersPerPage
+  );
+
+  const columnsArray = Array.from({ length: columns }, (_, colIndex) =>
+    displayedLetters.slice(
+      colIndex * lettersPerColumn,
+      (colIndex + 1) * lettersPerColumn
+    )
+  );
+
   return (
-    <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-      <div className="space-y-2">
-        <h5 className="text-lg font-medium uppercase text-black dark:text-white">
-          A
-        </h5>
-        <div className="flex items-center">
-          <Checkbox id="apple" name="apple" />
-          <Label
-            htmlFor="apple"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Apple (56)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="asus" name="asus" />
-          <Label
-            htmlFor="asus"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Asus (97)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="acer" name="acer" />
-          <Label
-            htmlFor="acer"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Acer (234)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="allview" name="allview" />
-          <Label
-            htmlFor="allview"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Allview (45)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="atari" name="atari" />
-          <Label
-            htmlFor="asus"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Atari (176)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="amd" name="amd" />
-          <Label
-            htmlFor="amd"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            AMD (49)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="aruba" name="aruba" />
-          <Label
-            htmlFor="aruba"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Aruba (16)
-          </Label>
-        </div>
-      </div>
-      <div className="space-y-2">
-        <h5 className="text-lg font-medium uppercase text-black dark:text-white">
-          B
-        </h5>
-        <div className="flex items-center">
-          <Checkbox id="beats" name="beats" />
-          <Label
-            htmlFor="beats"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Beats (56)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox defaultChecked id="bose" name="bose" />
-          <Label
-            htmlFor="bose"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Bose (97)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="benq" name="benq" />
-          <Label
-            htmlFor="benq"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            BenQ (45)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="bosch" name="bosch" />
-          <Label
-            htmlFor="bosch"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Bosch (176)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <input
-            id="brother"
-            type="checkbox"
-            className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+    <div>
+      {/* Search and checkbox filters */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
+        <div onClick={e => e.stopPropagation()} className="flex-1">
+          <TextInput
+            type="text"
+            placeholder="Search brands..."
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
           />
-          <Label
-            htmlFor="brother"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Brother (176)
-          </Label>
         </div>
-        <div className="flex items-center">
-          <Checkbox id="biostar" name="biostar" />
-          <Label
-            htmlFor="biostar"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Biostar (49)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="braun" name="braun" />
-          <Label
-            htmlFor="braun"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Braun (16)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="blaupunkt" name="blaupunkt" />
-          <Label
-            htmlFor="blaupunkt"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Blaupunkt (45)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="benq2" name="benq2" />
-          <Label
-            htmlFor="benq2"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            BenQ (23)
-          </Label>
-        </div>
-      </div>
-      <div className="space-y-2">
-        <h5 className="text-lg font-medium uppercase text-black dark:text-white">
-          C
-        </h5>
-        <div className="flex items-center">
-          <Checkbox id="canon" name="canon" />
-          <Label
-            htmlFor="canon"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Canon (49)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox defaultChecked id="cisco" name="cisco" />
-          <Label
-            htmlFor="cisco"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Cisco (97)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="cowon" name="cowon" />
-          <Label
-            htmlFor="cowon"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Cowon (234)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="clevo" name="clevo" />
-          <Label
-            htmlFor="clevo"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Clevo (45)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="corsair" name="corsair" />
-          <Label
-            htmlFor="corsair"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Corsair (15)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="csl" name="csl" />
-          <Label
-            htmlFor="csl"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Canon (49)
-          </Label>
-        </div>
-      </div>
-      <div className="space-y-2">
-        <h5 className="text-lg font-medium uppercase text-black dark:text-white">
-          D
-        </h5>
-        <div className="flex items-center">
-          <Checkbox id="dell" name="dell" />
-          <Label
-            htmlFor="dell"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Dell (56)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="dogfish" name="dogfish" />
-          <Label
-            htmlFor="dogfish"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Dogfish (24)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="dyson" name="dyson" />
-          <Label
-            htmlFor="dyson"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Dyson (234)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="dobe" name="dobe" />
-          <Label
-            htmlFor="dobe"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Dobe (5)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="digitus" name="digitus" />
-          <Label
-            htmlFor="digitus"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Digitus (1)
-          </Label>
-        </div>
-      </div>
-      <div className="space-y-2">
-        <h5 className="text-lg font-medium uppercase text-black dark:text-white">
-          E
-        </h5>
-        <div className="flex items-center">
-          <Checkbox id="emetec" name="emetec" />
-          <Label
-            htmlFor="emetec"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Emetec (56)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="extreme" name="extreme" />
-          <Label
-            htmlFor="extreme"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Extreme (10)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="elgato" name="elgato" />
-          <Label
-            htmlFor="elgato"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Elgato (234)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="emerson" name="emerson" />
-          <Label
-            htmlFor="emerson"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Emerson (45)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <input
-            id="emi"
-            type="checkbox"
-            className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+        <div className="flex items-center gap-2">
+          <Checkbox
+            id="onlyWithProducts"
+            checked={onlyWithProducts}
+            onChange={e => setOnlyWithProducts(e.target.checked)}
           />
-          <Label
-            htmlFor="emi"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            EMI (176)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="fugoo" name="fugoo" />
-          <Label
-            htmlFor="fugoo"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Fugoo (49)
-          </Label>
+          <Label htmlFor="onlyWithProducts">Only show Brands with products</Label>
         </div>
       </div>
-      <div className="space-y-2">
-        <h5 className="text-lg font-medium uppercase text-black dark:text-white">
-          F
-        </h5>
-        <div className="flex items-center">
-          <Checkbox id="fujitsu" name="fujitsu" />
-          <Label
-            htmlFor="fujitsu"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+
+      {/* 3-column scrollable grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {columnsArray.map((colLetters, colIndex) => (
+          <div
+            key={colIndex}
+            className="space-y-4 overflow-y-auto max-h-[390px] border p-2 rounded"
           >
-            Fujitsu (97)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox defaultChecked id="fitbit" name="fitbit" />
-          <Label
-            htmlFor="fitbit"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Fitbit (56)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="foxconn" name="foxconn" />
-          <Label
-            htmlFor="foxconn"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Foxconn (234)
-          </Label>
-        </div>
-        <div className="flex items-center">
-          <Checkbox id="floston" name="floston" />
-          <Label
-            htmlFor="floston"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Floston (45)
-          </Label>
-        </div>
+            {colLetters.map(letter => (
+              <div key={letter}>
+                <h5 className="text-lg font-medium uppercase text-black dark:text-white mb-2 sticky top-0 bg-white dark:bg-gray-800">
+                  {letter}
+                </h5>
+                {filteredGroupedBrands[letter].map(brand => {
+                  const count = brandCounts[brand.value] || 0;
+                  return (
+                    <div key={brand.value} className="flex items-center">
+                      <Checkbox
+                        id={`brand-${brand.value}`}
+                        checked={selectedBrand.includes(brand.value)}
+                        onChange={() => toggleBrand(brand.value)}
+                      />
+                      <Label
+                        htmlFor={`brand-${brand.value}`}
+                        className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        {brand.label} ({count})
+                      </Label>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
+
+      {/* Custom big-button pagination */}
+      {totalLetterPages > 1 && (
+        <div className="flex flex-wrap justify-center mt-4 gap-2">
+          {Array.from({ length: totalLetterPages }, (_, i) => {
+            const page = i + 1;
+            const isActive = page === letterPage;
+            return (
+              <button
+                key={page}
+                onClick={() => setLetterPage(page)}
+                className={`px-5 py-3 rounded font-medium text-lg transition-colors ${
+                  isActive
+                    ? 'bg-blue-600 text-white hover:bg-blue-700'
+                    : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                }`}
+              >
+                {page}
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

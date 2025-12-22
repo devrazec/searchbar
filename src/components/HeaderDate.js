@@ -20,16 +20,17 @@ const HeaderDate = () => {
 
   return (
     <div>
-      <h6 className="mb-2 text-sm font-medium text-black dark:text-white">
+      <h6 className="mb-2.5 text-sm font-medium text-black dark:text-white">
         Date
       </h6>
 
       <ul
-        className="flex w-full items-center rounded-lg border border-gray-200 bg-white text-sm
-                     dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+        className="w-full rounded-lg border border-gray-200 bg-white text-sm
+             dark:border-gray-600 dark:bg-gray-800 dark:text-white"
       >
-        <li className="w-36">
-          <div className="pl-3 py-3">
+        <li className="flex items-center px-3 py-3 gap-4 w-full">
+          {/* Start Date */}
+          <div className="w-36">
             <Datepicker
               key={`start-${dateResetKey}`}
               onChange={date => setDateStart(date ?? null)}
@@ -39,25 +40,22 @@ const HeaderDate = () => {
               showClearButton={false}
             />
           </div>
-        </li>
 
-        <li className="w-36">
-          <div className="pl-3 py-3">
+          {/* End Date */}
+          <div className="w-36">
             <Datepicker
-              key={`start-${dateResetKey}`}
-              language="en-GB"
+              key={`end-${dateResetKey}`}
               onChange={date => setDateEnd(date ?? null)}
+              language="en-GB"
               placeholder="End date"
               value={dateEnd}
               minDate={dateStart}
               showClearButton={false}
             />
           </div>
-        </li>
 
-        {/* COUNT */}
-        <li className="flex items-center px-3 ml-4 text-gray-400 text-sm">
-          {dateTotal}
+          {/* Count */}
+          <div className="ml-auto text-gray-400 text-sm">{dateTotal}</div>
         </li>
       </ul>
     </div>

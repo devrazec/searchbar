@@ -9,7 +9,7 @@ const HeaderRate = () => {
   const { filteredProduct, selectedRate, setSelectedRate } =
     useContext(GlobalContext);
 
-  const rates = [5, 4, 3, 2, 1];
+  const rates = [5, 4, 3, 2, 1, 0];
 
   const countProductsByRate = (products = []) =>
     products.reduce((acc, p) => {

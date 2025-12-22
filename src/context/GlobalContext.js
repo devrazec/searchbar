@@ -42,6 +42,15 @@ export function GlobalProvider({ children }) {
   const [brand, setBrand] = useState(dataBrandJson);
   const [delivery, setDelivery] = useState(30);
   const [productPrice, setProductPrice] = useState(100);
+  const [age, setAge] = useState(12);
+  const [size, setSize] = useState([
+    { label: "XXS", value: 1 },
+    { label: "XS", value: 2 },
+    { label: "S", value: 3 },
+    { label: "M", value: 4 },
+    { label: "L", value: 5 },
+    { label: "XL", value: 6 }
+  ]);
 
   const [dateStart, setDateStart] = useState(null);
   const [dateEnd, setDateEnd] = useState(null);
@@ -59,6 +68,8 @@ export function GlobalProvider({ children }) {
   const [selectedRate, setSelectedRate] = useState([]);
   const [selectedDelivery, setSelectedDelivery] = useState([1, 30]);
   const [selectedPrice, setSelectedPrice] = useState([1, 100]);
+  const [selectedAge, setSelectedAge] = useState([1, 12]);
+  const [selectedSize, setSelectedSize] = useState([]);
 
   const [geoZoomView, setGeoZoomView] = useState(6);
   const [geoInitialView, setGeoInitialView] = useState([39.3999, -8.2245]);
@@ -140,6 +151,13 @@ export function GlobalProvider({ children }) {
       );
     }
 
+    if (selectedAge[0] > 1 || selectedAge[1] < 12) {
+      filtered = filtered.filter(
+        p =>
+          p.age >= selectedAge[0] && p.age <= selectedAge[1]
+      );
+    }
+
     if (dateStart && dateEnd) {
       filtered = filtered.filter(p => {
         const productDate = normalizeDate(parseDMYDate(p.date));
@@ -167,6 +185,18 @@ export function GlobalProvider({ children }) {
 
     if (selectedLocation.length > 0) {
       filtered = filtered.filter(p => selectedLocation.includes(p.locationId));
+    }
+
+    if (selectedSize.length > 0) {
+      filtered = filtered.filter(p => selectedSize.includes(p.sizeId));
+    }
+
+    if (selectedBrand.length > 0) {
+      filtered = filtered.filter(p => selectedBrand.includes(p.brandId));
+    }
+
+    if (selectedSeller.length > 0) {
+      filtered = filtered.filter(p => selectedSeller.includes(p.sellerId));
     }
 
     // Sorting
@@ -199,8 +229,12 @@ export function GlobalProvider({ children }) {
     selectedGender,
     selectedProductName,
     selectedRate,
-    selectedPrice,
     selectedDelivery,
+    selectedPrice,
+    selectedAge,
+    selectedSize,
+    selectedBrand,
+    selectedSeller,
     dateStart,
     dateEnd,
     sortField,
@@ -230,6 +264,9 @@ export function GlobalProvider({ children }) {
         setDelivery,
         productPrice,
         setProductPrice,
+        age, setAge,
+        size, setSize,
+
         dateStart,
         setDateStart,
         dateEnd,
@@ -259,6 +296,9 @@ export function GlobalProvider({ children }) {
         setSelectedPrice,
         selectedDelivery,
         setSelectedDelivery,
+        selectedAge, setSelectedAge,
+        selectedSize, setSelectedSize,
+
         geoZoomView,
         setGeoZoomView,
         geoInitialView,

@@ -153,4 +153,4 @@ https://github.com/devrazec/searchbar/tree/gh-pages
 
 https://www.convertcsv.com/csv-to-json.htm
 https://flowbite.com/icons/
-https://flowbite-react.com/docs/components
+https://flowbite-react.com/
