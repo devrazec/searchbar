@@ -2,7 +2,7 @@
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../../.flowbite-react/class-list.json";
 @import 'primereact/resources/themes/lara-light-blue/theme.css';
-@import "flag-icons/css/flag-icons.min.css";
+@import 'flag-icons/css/flag-icons.min.css';
 
 @custom-variant dark (&:where(.light, .dark *));
 x body {

@@ -10,7 +10,6 @@ import Header8 from '../components/samples/Header8';
 import Header9 from '../components/samples/Header9';
 import DrawerEdge from '../components/DrawerEdge';
 
-
 export default function Home() {
   return (
     <>

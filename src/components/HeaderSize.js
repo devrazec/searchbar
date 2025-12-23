@@ -34,7 +34,10 @@ const HeaderSize = () => {
              dark:border-gray-600 dark:bg-gray-800 dark:text-white"
       >
         {size.map(siz => (
-          <li key={siz.value} className="flex items-center justify-between py-1.5 px-1">
+          <li
+            key={siz.value}
+            className="flex items-center justify-between py-1.5 px-1"
+          >
             <div className="flex items-center ml-2">
               <Checkbox
                 id={`size-${siz.value}`}
@@ -46,7 +49,6 @@ const HeaderSize = () => {
                 htmlFor={`size-${siz.value}`}
                 className="ml-2 flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-
                 {siz.label}
               </Label>
             </div>

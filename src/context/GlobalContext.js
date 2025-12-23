@@ -44,12 +44,12 @@ export function GlobalProvider({ children }) {
   const [productPrice, setProductPrice] = useState(100);
   const [age, setAge] = useState(12);
   const [size, setSize] = useState([
-    { label: "XXS", value: 1 },
-    { label: "XS", value: 2 },
-    { label: "S", value: 3 },
-    { label: "M", value: 4 },
-    { label: "L", value: 5 },
-    { label: "XL", value: 6 }
+    { label: 'XXS', value: 1 },
+    { label: 'XS', value: 2 },
+    { label: 'S', value: 3 },
+    { label: 'M', value: 4 },
+    { label: 'L', value: 5 },
+    { label: 'XL', value: 6 },
   ]);
 
   const [dateStart, setDateStart] = useState(null);
@@ -153,8 +153,7 @@ export function GlobalProvider({ children }) {
 
     if (selectedAge[0] > 1 || selectedAge[1] < 12) {
       filtered = filtered.filter(
-        p =>
-          p.age >= selectedAge[0] && p.age <= selectedAge[1]
+        p => p.age >= selectedAge[0] && p.age <= selectedAge[1]
       );
     }
 
@@ -264,8 +263,10 @@ export function GlobalProvider({ children }) {
         setDelivery,
         productPrice,
         setProductPrice,
-        age, setAge,
-        size, setSize,
+        age,
+        setAge,
+        size,
+        setSize,
 
         dateStart,
         setDateStart,
@@ -296,8 +297,10 @@ export function GlobalProvider({ children }) {
         setSelectedPrice,
         selectedDelivery,
         setSelectedDelivery,
-        selectedAge, setSelectedAge,
-        selectedSize, setSelectedSize,
+        selectedAge,
+        setSelectedAge,
+        selectedSize,
+        setSelectedSize,
 
         geoZoomView,
         setGeoZoomView,

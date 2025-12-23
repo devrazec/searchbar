@@ -98,7 +98,9 @@ const HeaderSeller = () => {
             checked={onlyWithProducts}
             onChange={e => setOnlyWithProducts(e.target.checked)}
           />
-          <Label htmlFor="onlyWithProducts">Only show Sellers with products</Label>
+          <Label htmlFor="onlyWithProducts">
+            Only show Sellers with products
+          </Label>
         </div>
       </div>
 

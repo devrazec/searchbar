@@ -12,8 +12,7 @@ const HeaderAge = () => {
 
   const ageCounts = useMemo(() => {
     return (filteredProduct || []).reduce((total, p) => {
-      return p.age >= selectedAge[0] &&
-        p.age <= selectedAge[1]
+      return p.age >= selectedAge[0] && p.age <= selectedAge[1]
         ? total + 1
         : total;
     }, 0);
@@ -58,9 +57,7 @@ const HeaderAge = () => {
             </span>
 
             {/* Age count */}
-            <span className="ml-4 text-gray-400 text-sm">
-              {ageCounts ?? 0}
-            </span>
+            <span className="ml-4 text-gray-400 text-sm">{ageCounts ?? 0}</span>
           </div>
         </li>
       </ul>

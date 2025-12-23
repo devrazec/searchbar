@@ -224,14 +224,12 @@ const Header = () => {
                             <HeaderDelivery />
                             <HeaderAge />
                             <HeaderPrice />
-
                           </div>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="grid grid-cols-1 gap-3">
                               <HeaderSize />
 
                               <HeaderDate />
-
                             </div>
                             <HeaderRate />
                           </div>
@@ -307,7 +305,6 @@ const Header = () => {
             }
           >
             <ul className="py-1" role="none">
-
               <li>
                 <Link
                   href="#"
@@ -321,7 +318,10 @@ const Header = () => {
               </li>
 
               <li>
-                <Link href="#" className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                <Link
+                  href="#"
+                  className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                >
                   <div className="inline-flex items-center gap-2">
                     <span className="fi fi-es h-4 w-4"></span>
                     <span>Español</span>
@@ -330,7 +330,10 @@ const Header = () => {
               </li>
 
               <li>
-                <Link href="#" className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                <Link
+                  href="#"
+                  className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                >
                   <div className="inline-flex items-center gap-2">
                     <span className="fi fi-pt h-4 w-4"></span>
                     <span>Português</span>
@@ -339,7 +342,10 @@ const Header = () => {
               </li>
 
               <li>
-                <Link href="#" className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                <Link
+                  href="#"
+                  className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                >
                   <div className="inline-flex items-center gap-2">
                     <span className="fi fi-fr h-4 w-4"></span>
                     <span>Français</span>
@@ -348,14 +354,16 @@ const Header = () => {
               </li>
 
               <li>
-                <Link href="#" className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                <Link
+                  href="#"
+                  className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                >
                   <div className="inline-flex items-center gap-2">
                     <span className="fi fi-de h-4 w-4"></span>
                     <span>Deutsch</span>
                   </div>
                 </Link>
               </li>
-
             </ul>
           </Dropdown>
 

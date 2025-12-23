@@ -87,7 +87,7 @@ function getAgeSize(age) {
     9: 134,
     10: 140,
     11: 146,
-    12: 152
+    12: 152,
   };
 
   const euSize = ageToEuSize[age] ?? null;
@@ -96,12 +96,12 @@ function getAgeSize(age) {
   let sizeName = null;
 
   if (euSize !== null) {
-    if (euSize <= 104) sizeId = 1, sizeName = "XXS";
-    else if (euSize <= 116) sizeId = 2, sizeName = "XS";
-    else if (euSize <= 128) sizeId = 3, sizeName = "S";
-    else if (euSize <= 140) sizeId = 4, sizeName = "M";
-    else if (euSize <= 152) sizeId = 5, sizeName = "L";
-    else sizeId = 6, sizeName = "XL";
+    if (euSize <= 104) ((sizeId = 1), (sizeName = 'XXS'));
+    else if (euSize <= 116) ((sizeId = 2), (sizeName = 'XS'));
+    else if (euSize <= 128) ((sizeId = 3), (sizeName = 'S'));
+    else if (euSize <= 140) ((sizeId = 4), (sizeName = 'M'));
+    else if (euSize <= 152) ((sizeId = 5), (sizeName = 'L'));
+    else ((sizeId = 6), (sizeName = 'XL'));
   }
 
   return {
