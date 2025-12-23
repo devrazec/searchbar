@@ -137,6 +137,14 @@ npx prisma studio
 
 ```
 
+# Web Interface
+
+http://localhost:3000/searchbar
+
+![Pic1](./public/img/pic1.png)
+![Pic2](./public/img/pic2.png)
+![Pic3](./public/img/pic3.png)
+
 # Demo
 
 https://devrazec.github.io/searchbar
